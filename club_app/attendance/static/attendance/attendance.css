@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#calender table{
+    margin: auto;
+}
+#calender #TableHead{
+    width: 480px;
+}
+#calender *{
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+#calender th,
+#calender td{
+    width: 60px;
+    height: 60px;
+}
+#calender td{
+    text-align: center;
+    position: relative;
+    top: -15px;
+}
+.attended{
+    background-color: aquamarine;
+}
+

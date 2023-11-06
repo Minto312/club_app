@@ -1,0 +1,45 @@
+
+{% extends 'club_app/base.html' %}
+
+
+{% block head %}
+    <title>Attendance</title>
+
+    <!-- 休日判定 -->
+    <script src="https://cdn.jsdelivr.net/gh/osamutake/japanese-holidays-js@v1.0.10/lib/japanese-holidays.min.js"></script>
+    {% load static%}
+    <script src="{% static 'attendance/attendance.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'attendance/attendance.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1>This is Attendance</h1>
+    <h2>今日は<time id="html_date"></time>です</h2>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="date" id="date">
+        <input type="submit" value="I'm attended!" id="submit">
+    </form>
+    
+    <h2>{{ posted }}</h2>
+    <ul>
+        {% for record in records %}
+        <li>{{ record.name}} : {{ record.date }}</li>
+        {% endfor %}
+    </ul>
+    <div id="calender">
+        <table>
+            <tbody>
+                <tr><th colspan="7" id="TableHead">YYYY-MM</th></tr>
+                <tr><th class="Sunday">日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="Saturday">土</th></tr>
+                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Saturday"></td></tr>
+                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Saturday"></td></tr>
+                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Saturday"></td></tr>
+                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="cellToday"></td></tr>
+                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Holiday"></td></tr>
+                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Saturday"></td></tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
