@@ -1,0 +1,104 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+#sign_in_form_box_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+#sign_in_form_box {
+    width: auto;
+    height: auto;
+
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    background: #eee;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+}
+#sign_in_form_box div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 60px;
+}
+#sign_in_form_box div p {
+    font-family: 'Inter';
+    font-size: 32px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 39px;
+
+    width: 130px;
+    height: 40px;
+    margin: 0;
+    margin-top: 25px;
+}
+#sign_in_form {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    flex-wrap: wrap;
+
+    width: 100%;
+    height: auto;
+    margin: 0;
+}
+#sign_in_form input:not([type='submit']) {
+    font-family: 'Inter';
+    font-size: 32px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 39px;
+
+    width: 300px;
+    height: 60px;
+    margin: 0 50px;
+    margin-top: 35px;
+    padding: 5px 25px;
+
+    color: #000;
+    border: 1px solid #ccc !important;
+    border-radius: 7px;
+    background: #d9d9d9;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+}
+#sign_in_form input:not([type='submit'])::placeholder {
+    color: #a5a5a5;
+}
+#sign_in_form input:not([type='submit']):focus {
+    outline: #999 solid 1px;
+}
+#sign_in_form input[type='submit'] {
+    font-family: 'Inter';
+    font-size: 32px;
+    font-size: 32px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 39px;
+
+    width: 200px;
+    height: 55px;
+    margin: 35px auto;
+    margin-top: 50px;
+
+    opacity: .5;
+    color: #f5f5f5;
+    border: 1px solid #0048ff;
+    border-radius: 5px;
+    background: #1355ff;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+}
+#sign_in_form input[type='submit']:hover {
+    opacity: .5;
+    border: 1px solid #002893;
+    border-radius: 5px;
+    background: #003cdf;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .25);
+}

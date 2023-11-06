@@ -1,0 +1,31 @@
+
+{% extends 'club_app/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <title>登録</title>
+    <link rel="stylesheet" href="{% static 'account/register.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="register-container">
+        <h2>Register</h2>
+        <div id="form-container">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-box">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" name="username" id="username" class="input-text" placeholder="username">
+                </div>
+
+                <div class="form-box">
+                    <label for="password">パスワード</label>
+                    <input type="password" name="password" id="password" class="input-text" placeholder="password">
+                </div>
+                <!-- <div id="submit-box"> -->
+                    <input id="submit" type="submit" value="登録">
+                <!-- </div> -->
+            </form>
+        </div>
+    </div>
+{% endblock %}

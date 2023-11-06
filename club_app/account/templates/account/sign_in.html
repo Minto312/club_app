@@ -1,0 +1,42 @@
+
+{% extends 'club_app/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <title>サインイン</title>
+    <link rel="stylesheet" href="{% static 'account/sign_in.css' %}">
+    <script src="{% static 'account/sign_in.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="sign-in-container">
+        {% if auth_message != "" %}
+            <p id="error-message">{{ auth_message }}</p>
+        {% endif %}
+        <h2>Sign In</h2>
+        <div id="form-container">
+            <form action="" method="post" onsubmit="valid_data()">
+                {% csrf_token %}
+                <div class="form-box">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" name="username" id="username" class="input-text" placeholder="username">
+                </div>
+
+                <div class="form-box">
+                    <label for="password">パスワード</label>
+                    <input type="password" name="password" id="password" class="input-text" placeholder="password">
+                </div>
+                <!-- <div id="submit-box"> -->
+                    <input id="submit" name="sub" type="submit" value="サインイン">
+                <!-- </div> -->
+            </form>
+        </div>
+        <div class="line">
+            <p id="register-text">ご登録がまだの方は</p>
+        </div>
+
+        <!-- <div id="register-button"> -->
+            <a href="{% url 'account:register' %}" id="register-link">Create Account</a>
+        <!-- </div> -->
+    </div>
+{% endblock %}
