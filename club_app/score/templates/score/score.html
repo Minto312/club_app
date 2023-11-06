@@ -1,0 +1,15 @@
+{% extends 'club_app/base.html' %}
+
+{% block head %}
+    <title>点数表</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Club App</h1>
+    <p>Welcome to the club app</p>
+    {% for s in score %}
+        <p>{{ s.exam_name }} : {{ s.score }}</p>
+    {% empty %}
+        <p>No score</p>
+    {% endfor %}
+{% endblock %}

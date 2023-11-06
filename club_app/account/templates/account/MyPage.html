@@ -1,0 +1,33 @@
+
+{% extends 'club_app/base.html' %}
+
+{% block head %}
+    {% load static %}
+    <title>マイページ</title>
+    <link rel="stylesheet" href="{% static 'account/mypage.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div id="mypage-conteiner">
+        <h2>登録情報</h2>
+        <div id="form-container">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-box">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" name="username" id="username" class="input-text" value="{{ username }}">
+                </div>
+                <div class="form-box">
+                    <label for="name">名前</label>
+                    <input type="text" name="name" id="name" class="input-text" value="{{ name }}">
+                </div>
+                <div class="form-box">
+                    <label for="class_id">4ケタ番号</label>
+                    <input type="text" name="class_id" id="class_id" class="input-text" value="{{ class_id }}">
+                </div>
+
+                <input type="submit" value="更新" id="submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}
