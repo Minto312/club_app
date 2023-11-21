@@ -69,7 +69,7 @@ def data(request):
 
 @login_required
 def qr(request):
-    print(f'=============\n\nacceced QR\n\n{request.user.username=} \n\n===============')
+    print(f'=============\n\naccessed QR\n\n{request.user.username=} \n\n===============')
 
     username = request.user.username
 

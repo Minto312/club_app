@@ -1,0 +1,16 @@
+{% extends 'club_app/base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block content %}
+    <h1>come to My Club App</h1>
+    <p>This is the home page.</p>
+    <ul>
+        <li><a href="{% url 'attendance:attendance' %}">attendance</a></li>
+        <li><a href="{% url 'information:information' %}">information</a></li>
+        <li><a href="{% url 'score:score' %}">score</a></li>
+        <li><a></a></li>
+        <li><a></a></li>
+    </ul>
+{% endblock %}

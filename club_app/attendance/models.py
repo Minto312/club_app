@@ -9,3 +9,11 @@ class AttendanceDB(models.Model):
 
     def __str__(self):
         return f'{self.name} : {self.date}'
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name', 'date'],
+                name="attend_unique"
+            ),
+        ]

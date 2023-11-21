@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title></title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        {% load static%}
+        <script src="{% static 'club_app/base.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'club_app/base.css' %}">
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <div id="club_logo">
+                <a href="">
+                    <img src="{% static 'club_app/club_logo.png' %}" alt="部活動ロゴ" id="club_logo_img">
+                </a>
+            </div>
+            <nav>
+                <ul id="navigation_bar">
+                    <li>
+                        <a href=""><p>部活動情報</p></a>
+                    </li>
+                    <li>
+                        <a href=""><p>お知らせ</p></a>
+                    </li>
+                    <li>
+                        <a href=""><p>公式LINE</p></a>
+                    </li>
+                    <li class="drop_down_menu_hover">
+                        <p>サイトマップ</p>
+                        <ul>
+                            <li><a href="{% url 'attendance:attendance' %}">attendance</a></li>
+                            <li><a href="{% url 'information:information' %}">information</a></li>
+                            <li><a href="{% url 'score:score' %}">score</a></li>
+                            <li><a></a></li>
+                            <li><a></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div id="user_icon">
+                    <img src="https://" alt="ユーザーアイコン">
+                    <ul class="drop_down_menu_content_click">
+                        {% if request.user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'account:sign_out' %}">サインアウト</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{% url 'account:sign_in' %}">サインイン</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        {% block content %}
+        
+        {% endblock %}
+    </body>
+</html>
