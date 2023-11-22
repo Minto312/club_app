@@ -8,8 +8,8 @@
     <!-- 休日判定 -->
     <script src="https://cdn.jsdelivr.net/gh/osamutake/japanese-holidays-js@v1.0.10/lib/japanese-holidays.min.js"></script>
     {% load static%}
-    <script src="{% static 'information/calendar.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'information/calendar.css' %}">
+    <script src="{% static 'information/information.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'information/information.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,7 @@
         <label for="date">日付:</label><br>
         <input type="date" id="date" name="date"><br>
         <label for="has_club_activity">部活動がある:</label><br>
-        <input type="checkbox" value="true" id="has_club_activity" name="has_club_activity"><br>
+        <input type="checkbox" id="has_club_activity" name="has_club_activity" checked><br>
         <input type="submit" value="Submit">
     </form>
     

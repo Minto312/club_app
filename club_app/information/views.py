@@ -17,7 +17,7 @@ class Information(LoginRequiredMixin, View):
             'records':select_all
         }
         
-        return render(request, 'information/calendar.html', return_data)
+        return render(request, 'information/information.html', return_data)
 
     def post(self, request):
         # 新しいレコードを作成
