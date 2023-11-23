@@ -24,6 +24,7 @@ services:
 
     environment:
       - HOST=[2400:4151:4281:7300:3a71:9959:3541:9174]
+      - is_docker=True
     # env_file:
     #   - ./.env
     # restart: always
@@ -60,8 +61,12 @@ services:
       - MYSQL_USER: root
       - MYSQL_PASSWORD: password
     volumes:
-      - ./mysql/data:/var/lib/mysql
+      # - ./mysql/data:/var/lib/mysql
+      - type: volume
+        source: db
+        # source: /docker/data/db
+        target: /var/lib/mysql
 volumes:
   static:
-
   socket:
+  db:
