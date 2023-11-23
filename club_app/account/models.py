@@ -1,3 +1,4 @@
+import profile
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
@@ -82,6 +83,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     #     super().clean()
     #     self.email = self.__class__.objects.normalize_email(self.email)
 
+def image_name(instance, filename):
+    return f'profile_image/{instance.user.username}.jpg'
 
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -92,3 +95,4 @@ class Profile(models.Model):
 
     name = models.CharField(max_length=50)
     class_id = models.CharField(max_length=4)
+    profile_image = models.ImageField(upload_to=image_name,blank=True)

@@ -25,3 +25,8 @@ urlpatterns = [
     path('attendance/', include('attendance.urls')),
     path('information/', include('information.urls')),
 ]
+
+from . import settings
+from django.contrib.staticfiles.urls import static, staticfiles_urlpatterns
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

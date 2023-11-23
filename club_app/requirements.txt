@@ -3,3 +3,4 @@ wheel
 uWSGI
 mysqlclient
 pytz
+Pillow

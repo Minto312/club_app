@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import ExamDB,ScoreDB
 # Create your views here.
 
-class Score(LoginRequiredMixin, View):
+class Score(View):
     def get(self,request):
         score = ScoreDB.objects.filter(user=request.user)
 
@@ -15,7 +14,7 @@ class Score(LoginRequiredMixin, View):
 
         return render(request,'score/score.html',context)
     
-class Recording(LoginRequiredMixin, View):
+class Recording(View):
     def get(self,request):
         exams = ExamDB.objects.all()
 

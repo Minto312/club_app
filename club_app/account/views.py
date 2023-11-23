@@ -68,6 +68,7 @@ class MyPage(LoginRequiredMixin,View):
             'username':request.user.username,
             'name' : profile.name,
             'class_id' : profile.class_id,
+            'profile_image' : profile.profile_image,
         }
         return render(request,'account/MyPage.html',return_data)
 
@@ -77,6 +78,7 @@ class MyPage(LoginRequiredMixin,View):
         username = request.POST['username']
         name = request.POST['name']
         class_id = request.POST['class_id']
+        profile_image = request.POST['profile_image']
 
         user = request.user
         # profileを選択
@@ -86,12 +88,14 @@ class MyPage(LoginRequiredMixin,View):
         user.save()
         profile.name = name
         profile.class_id = class_id
+        profile.profile_image = profile_image
         profile.save()
 
         return_data = {
             'username' : user.username,
             'name' : profile.name,
             'class_id' : profile.class_id,
+            'profile_image' : profile.profile_image,
         }
         print(f'=========\n\n{return_data}\n\n=================')
         return render(request,'account/MyPage.html',return_data)
