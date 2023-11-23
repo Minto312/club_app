@@ -24,9 +24,16 @@
 #calender td{
     text-align: center;
     position: relative;
-    top: -15px;
+    top: -15px; 
 }
-.attended{
+.attended::after{
+    content: "";
+    display: block; 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 15px;
+    z-index: -1;
     background-color: aquamarine;
 }
 

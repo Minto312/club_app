@@ -15,38 +15,35 @@
     <body>
         <header>
             <div id="club_logo">
-                <a href="{% url 'home:home' %}">
-                    <img src="{% static 'club_app/club_logo_min.png' %}" alt="部活動ロゴ">
+                <a href="">
+                    <img src="{% static 'club_app/club_logo.png' %}" alt="部活動ロゴ" id="club_logo_img">
                 </a>
             </div>
             <nav>
                 <ul id="navigation_bar">
                     <li>
-                        <a href="{% url 'home:home' %}">ホーム</a>
+                        <a href=""><p>部活動情報</p></a>
                     </li>
                     <li>
-                        <a href="">部活動HP</a>
+                        <a href=""><p>お知らせ</p></a>
                     </li>
                     <li>
-                        <a href="">公式LINE</a>
+                        <a href=""><p>公式LINE</p></a>
+                    </li>
+                    <li class="drop_down_menu_hover">
+                        <p>サイトマップ</p>
+                        <ul>
+                            <li><a href="{% url 'attendance:attendance' %}">attendance</a></li>
+                            <li><a href="{% url 'information:information' %}">information</a></li>
+                            <li><a href="{% url 'score:score' %}">score</a></li>
+                            <li><a></a></li>
+                            <li><a></a></li>
+                        </ul>
                     </li>
                 </ul>
-                <div id="tools" class="ready-hover">
-                    <p>ツール</p>
-                    <ul id="tool-menu">
-                        <li><a href="{% url 'attendance:attendance' %}">attendance</a></li>
-                        <li><a href="{% url 'information:information' %}">information</a></li>
-                        <li><a href="{% url 'score:score' %}">score</a></li>
-                        <li><a></a></li>
-                        <li><a></a></li>
-                    </ul>
-                </div>
-                <div id="user_icon" class="ready-hover">
-                    <img src="" alt="ユーザーアイコン">
-                    <ul id="user-menu">
-                        <li>
-                            <a href="{% url 'account:mypage' %}">マイページ</a>
-                        </li>
+                <div id="user_icon">
+                    <img src="https://" alt="ユーザーアイコン">
+                    <ul class="drop_down_menu_content_click">
                         {% if request.user.is_authenticated %}
                             <li>
                                 <a href="{% url 'account:sign_out' %}">サインアウト</a>

@@ -1,4 +1,4 @@
-let today = new Date();
+const today = new Date();
 
 const YEAR = today.getFullYear();
 const MONTH = today.getMonth() + 1;
@@ -21,7 +21,7 @@ async function render_calender(){
     $('#TableHead').text(`${YEAR}年${MONTH}月`);
 
     // td要素すべてを抽出
-    const DAY_SELLS = document.evaluate('//td',document,null,XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,null);
+    const DAY_CELLS = document.evaluate('//td',document,null,XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,null);
 
     // monthのインデックスは0-11だから-1する
     let first_day = new Date(`${YEAR}`,`${MONTH-1}`,1);
@@ -38,7 +38,7 @@ async function render_calender(){
     let array_check_idx = 0;
     let is_attended;
     for (let i=start_day_week; write_day <= last_date;i++){
-        cell = DAY_SELLS.snapshotItem(i);
+        cell = DAY_CELLS.snapshotItem(i);
         // console.log(cell);
         $(cell).text(write_day);
 

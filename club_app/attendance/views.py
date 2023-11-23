@@ -1,11 +1,11 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.views import View
 from .models import AttendanceDB
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-class Attendance(LoginRequiredMixin,View):
+class Attendance(View):
 
     def get(self,request):
         # すべてのレコードを表示
@@ -41,6 +41,7 @@ class Attendance(LoginRequiredMixin,View):
 
 import json
 from datetime import datetime
+import pytz
 def data(request):
     print(f'==============\n\nrun data\n\n============')
 
@@ -58,7 +59,7 @@ def data(request):
 
     attended_days = list()
     for record in attended_dates:
-        date = record.date
+        date = record.date.astimezone(pytz.timezone('Asia/Tokyo'))
         day = date.day
         attended_days.append(day)
 
@@ -67,7 +68,6 @@ def data(request):
     return HttpResponse(return_data)
 
 
-@login_required
 def qr(request):
     print(f'=============\n\naccessed QR\n\n{request.user.username=} \n\n===============')
 
@@ -79,7 +79,13 @@ def qr(request):
         'date':datetime.now(),
         'attended':True
     }
-    AttendanceDB.objects.create(**insert_data)
+    if not AttendanceDB.objects.filter(
+        name=username,
+        date__year=datetime.now().year,
+        date__month=datetime.now().month,
+        date__day=datetime.now().day
+    ).exists():
+        AttendanceDB.objects.create(**insert_data)
 
     # .../attendance へリダイレクト
     return redirect('../')

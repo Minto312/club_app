@@ -55,7 +55,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
+   
+    # app_name.python_file_name.class_name
     'club_app.middleware.AuthMiddleware',
 ]
 
