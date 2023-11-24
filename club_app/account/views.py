@@ -57,7 +57,7 @@ class SignOut(View):
         logout(request)
         return redirect('/account/sign_in')
 
-class MyPage(LoginRequiredMixin,View):
+class MyPage(View):
     def get(self,request):
         try:
             profile = Profile.objects.get(user=request.user)
@@ -78,21 +78,20 @@ class MyPage(LoginRequiredMixin,View):
         username = request.POST['username']
         name = request.POST['name']
         class_id = request.POST['class_id']
-        profile_image = request.POST['profile_image']
+        profile_image = request.FILES['profile_image']
 
-        user = request.user
         # profileを選択
-        profile = Profile.objects.get(user=user)
+        profile = Profile.objects.get(user=request.user)
 
-        user.username = username
-        user.save()
+        request.user.username = username
+        request.user.save()
         profile.name = name
         profile.class_id = class_id
         profile.profile_image = profile_image
         profile.save()
 
         return_data = {
-            'username' : user.username,
+            'username' : username,
             'name' : profile.name,
             'class_id' : profile.class_id,
             'profile_image' : profile.profile_image,

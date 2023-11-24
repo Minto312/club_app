@@ -4,3 +4,4 @@ uWSGI
 mysqlclient
 pytz
 Pillow
+django-cleanup

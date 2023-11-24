@@ -84,7 +84,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     #     self.email = self.__class__.objects.normalize_email(self.email)
 
 def image_name(instance, filename):
-    return f'profile_image/{instance.user.username}.jpg'
+    print(f'====================\n\n{instance.user.username}\n\n====================')
+    return f'profile_icon/{instance.user.username}.jpg'
 
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -93,6 +94,6 @@ class Profile(models.Model):
         primary_key=True
     )
 
-    name = models.CharField(max_length=50)
-    class_id = models.CharField(max_length=4)
+    name = models.CharField(max_length=50, blank=True)
+    class_id = models.CharField(max_length=4, blank=True)
     profile_image = models.ImageField(upload_to=image_name,blank=True)
