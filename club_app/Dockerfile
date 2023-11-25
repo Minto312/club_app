@@ -21,8 +21,8 @@ RUN mkdir /app/tmp/sockets/ -p && \
 
 COPY . .
 
-RUN bash ./del_migrate.sh && \
-    python3 manage.py makemigrations && \
+# RUN bash ./del_migrate.sh && \
+RUN python3 manage.py makemigrations && \
     python3 manage.py migrate && \
     python3 manage.py collectstatic
 
