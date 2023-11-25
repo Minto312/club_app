@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent
 SECRET_KEY = 'django-insecure-gk#@7d=dg$ajjbc(v3+i4xj^ofj%#-5mazr#e^64lg&9mdh2o!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('IS_PRODUCT') != 'True'
 
-ALLOWED_HOSTS = ['*',os.environ.get('HOST')]
+ALLOWED_HOSTS = [os.environ.get('HOST'), 'localhost']
 
 
 # Application definition
@@ -84,15 +84,16 @@ WSGI_APPLICATION = 'club_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if os.environ.get('is_docker') == 'True':    
+if os.environ.get('IS_DOCKER') == 'True':    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'club_app_db',
+            'NAME': 'club_app',
             'USER': 'root',
             'PASSWORD': 'password',
-            'HOST': 'db',
-            'PORT': '3306',
+            'HOST': '/var/run/mysqld/mysqld.sock',
+            # 'HOST': 'db',
+            # 'PORT': '3306',
         }
     }
 else:
@@ -142,11 +143,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = 'static/'
+if os.environ.get('IS_DOCKER') == 'True':    
+    STATIC_ROOT = '/var/www/static/'
+    MEDIA_ROOT = '/var/www/media/'
+else:
+    STATIC_ROOT = 'static/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL = 'media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

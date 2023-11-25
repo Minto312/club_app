@@ -7,6 +7,12 @@ base_dir=$(pwd)
 
 for dir in $(ls -d */)
 do
+    if [ -d $dir/migrations/ ]
+    then
+        echo $dir/migrations/
+    else
+        continue
+    fi
     cd $dir/migrations/
     # echo $(pwd)
     # echo $(ls -df * | grep -v __init__.py)

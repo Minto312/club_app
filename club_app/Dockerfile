@@ -3,7 +3,9 @@ FROM python:3.10.12-slim-bullseye
 # ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 RUN apt-get update && apt-get upgrade -y && \
-    apt-get -y install build-essential python libpcre3 libpcre3-dev 
+    apt-get -y install build-essential python \
+                       libpcre3 libpcre3-dev \
+                       pkg-config default-libmysqlclient-dev
 # python3.10-dev
 
 COPY requirements.txt .
@@ -19,7 +21,9 @@ RUN mkdir /app/tmp/sockets/ -p && \
 
 COPY . .
 
-RUN python3 manage.py migrate && \
+RUN bash ./del_migrate.sh && \
+    python3 manage.py makemigrations && \
+    python3 manage.py migrate && \
     python3 manage.py collectstatic
 
 CMD ["uwsgi","--ini","uwsgi.ini"]

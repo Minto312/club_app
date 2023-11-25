@@ -96,4 +96,4 @@ class Profile(models.Model):
 
     name = models.CharField(max_length=50, blank=True)
     class_id = models.CharField(max_length=4, blank=True)
-    profile_image = models.ImageField(upload_to=image_name,blank=True)
+    profile_image = models.ImageField(upload_to=image_name,blank=True, default='profile_icon/default.jpg')

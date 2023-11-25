@@ -8,25 +8,31 @@ services:
       dockerfile: ./Dockerfile
 
     volumes:
-      # - type: volume
-      #   source: db
-      #   # source: /docker/data/db
-      #   target: /club_app/db.sqlite3
-
-      - type: volume
-        source: static
-        # source: /docker/data/static
-        target: /app/static
-
       - type: volume
         source: socket
         target: /app/tmp/sockets/
 
+      - type: volume
+        source: static
+        target: /var/www/static/
+
+      - type: volume
+        source: media
+        target: /var/www/media/
+
+      - type: volume
+        source: db
+        target: /var/run/mysql/
+
+      - type: volume
+        source: db_socket
+        target: /var/run/mysqld/
+
     environment:
-      - HOST=[2400:4151:4281:7300:3a71:9959:3541:9174]
-      - is_docker=True
-    # env_file:
-    #   - ./.env
+      IS_PRODUCT: 'FALSE'
+      HOST: 'localhost'
+      IS_DOCKER: 'True'
+
     # restart: always
 
     depends_on:
@@ -40,33 +46,48 @@ services:
       dockerfile: ./Dockerfile
 
     ports:
-      - 61232:80
+      - 80:80
 
     volumes:
-      - type: volume
-        source: static
-        # source: ./nginx/static
-        target: /static
-
       - type: volume
         source: socket
         target: /app/tmp/sockets/
 
+      - type: volume
+        source: static
+        target: /static/
+
+      - type: volume
+        source: media
+        target: /media/
+
   db:
     container_name: mysql
-    image: mysql:5.7
+    image: mysql:8.2.0
     command: --default-authentication-plugin=mysql_native_password
+
     environment:
-      - MYSQL_DATABASE: club_app
-      - MYSQL_USER: root
-      - MYSQL_PASSWORD: password
+      MYSQL_DATABASE: club_app
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: django
+      MYSQL_PASSWORD: password
+      TZ: Asia/Tokyo
+
     volumes:
-      # - ./mysql/data:/var/lib/mysql
       - type: volume
         source: db
-        # source: /docker/data/db
-        target: /var/lib/mysql
+        target: /var/lib/mysql/
+
+      - type: volume
+        source: db_socket
+        target: /var/run/mysqld/
+
+    depends_on:
+      - nginx
+
 volumes:
-  static:
   socket:
+  static:
+  media:
   db:
+  db_socket:

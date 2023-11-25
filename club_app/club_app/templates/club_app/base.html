@@ -43,7 +43,7 @@
                     </ul>
                 </div>
                 <div id="user_icon" class="ready-hover">
-                    <img src="/media/profile_icon/{{ request.user.username }}.jpg" alt="ユーザーアイコン">
+                    <img src="/media/{{ request.user.profile.profile_image }}" alt="ユーザーアイコン">
                     <ul id="user-menu">
                         <li>
                             <a href="{% url 'account:mypage' %}">マイページ</a>
