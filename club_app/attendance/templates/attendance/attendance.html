@@ -14,7 +14,7 @@
 
 {% block content %}
     <h1>This is Attendance</h1>
-    <h2>今日は<time id="html_date"></time>です</h2>
+    <h2>今日は<time id="current-date"></time>です</h2>
 
     <form action="" method="post">
         {% csrf_token %}
@@ -31,7 +31,7 @@
     <div id="calender">
         <table>
             <tbody>
-                <tr><th colspan="7" id="TableHead">YYYY-MM</th></tr>
+                <tr><th id="prev-month"><button><</button></th><th colspan="5" id="TableHead">YYYY-MM</th><th id="next-month"><button>></button></th></tr>
                 <tr><th class="sunday">日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="saturday">土</th></tr>
                 <tr><td class="sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="saturday"></td></tr>
                 <tr><td class="sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="saturday"></td></tr>
