@@ -1,8 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.views import View
 from .models import AttendanceDB, ScheduleDB
-# from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 class Attendance(View):
@@ -77,6 +75,7 @@ def attend(request):
         'date':datetime.now(),
         'attended':True
     }
+    
     if not AttendanceDB.objects.filter(
         name=username,
         date__year=datetime.now().year,
@@ -116,8 +115,6 @@ class Activity(View):
         return redirect('information')
 
 def activity_data(request, year, month):
-    print(f'==============\n\nrun data\n\n============')
-
     extract_condition = {
         'year': year,
         'month': month
@@ -126,7 +123,7 @@ def activity_data(request, year, month):
     scheduled_dates = ScheduleDB.objects.filter(**extract_condition)
 
     if scheduled_dates.exists():
-        scheduled_days = list(scheduled_dates[0].days)
+        scheduled_days = scheduled_dates[0].days
     else:
         scheduled_days = 'None'
     # scheduled_days = list()
@@ -135,13 +132,22 @@ def activity_data(request, year, month):
     #     day = date.day
     #     scheduled_days.append(day)
         
-    return_data = json.dumps(scheduled_days)
+    # return_data = json.dumps(scheduled_days)
+    return_data = scheduled_days
     print(f'==================\n\n/data/  {return_data=}\n\n=================')
     return HttpResponse(return_data)
 
-def register(request, year: int, month: int, days: str):
-    print(f'=============\n\naccessed QR\n\n{request.user.username=} \n\n===============')
+import re
+def register(request, year: int, month: int):
+    print(f'=============\n\naccessed register\n\n{request.user.username=} \n\n===============')
 
+    days = request.POST.get('days')
+    print(type(days))
+    print(f'=============\n\n{days=}\n\n===============')
+    days = re.sub(r'\[|\]|\"', '', days)
+    print(f'=============\n\n{days=}\n\n===============')
+    # days = list(map(int, days.split(',')))
+    # print(f'=============\n\n{days=}\n\n===============')
     insert_data =  {
         'year': year,
         'month': month,
@@ -158,4 +164,4 @@ def register(request, year: int, month: int, days: str):
             month=month
         ).update(**insert_data)
 
-    return redirect('../')
+    return HttpResponse('success')

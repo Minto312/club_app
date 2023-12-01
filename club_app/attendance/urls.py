@@ -10,5 +10,5 @@ urlpatterns = [
     path('attend/', attend, name='attend'),
     path('activity/', Activity.as_view(), name='activity'),
     path('activity/activity_data/<int:year>/<int:month>/', activity_data, name='activity_data'),
-    path('register/', register, name='register'),   
+    path('activity/register/<int:year>/<int:month>/', register, name='register'),   
 ]
