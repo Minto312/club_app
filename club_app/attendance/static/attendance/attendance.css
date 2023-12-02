@@ -5,12 +5,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    overflow-x: hidden;
+}
 
 #calender table{
     margin: auto;
 }
 #calender #TableHead{
-    width: 480px;
+    width: 300px;
 }
 #calender *{
     border: 1px solid #000000;
@@ -26,7 +29,7 @@
     position: relative;
     top: -15px; 
 }
-.attended::after{
+.attended::before{
     content: "";
     display: block; 
     width: 100%;
@@ -36,6 +39,28 @@
     z-index: -1;
     background-color: #22ffda;
 }
+
+.absent::before{
+    content: "";
+    display: block; 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 15px;
+    z-index: -1;
+    background-color: #ff2222;
+}
+
+.activity::after{
+    content: "o";
+    display: block; 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 30px;
+    z-index: -1;
+}
+
 #prev-month,
 #next-month{
     cursor: pointer;

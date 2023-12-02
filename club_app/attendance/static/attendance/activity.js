@@ -71,11 +71,8 @@ async function render_calender(){
 
     // 出席記録のある日付を抽出
     const ACTIVITY_DAYS = await getActivityDays();
-    console.log(`Type of ACTIVITY_DAYS: ${typeof(ACTIVITY_DAYS)}`);
-    console.log(`ACTIVITY_DAYS: ${ACTIVITY_DAYS}`); // -> ["1","8","15","22"]
 
     let writeDay = 1;
-    let arrayCheckIdx = 0;
     let hasActivity;
 
     // 月初めの曜日まで空白を埋める
@@ -102,7 +99,7 @@ async function render_calender(){
         if (ACTIVITY_DAYS === 'None'){
             hasActivity = $(cell).hasClass('weekday');
         }else{
-            [hasActivity,arrayCheckIdx] = checkInclude(writeDay,ACTIVITY_DAYS,arrayCheckIdx);
+            hasActivity = ACTIVITY_DAYS[writeDay] !== undefined;
         }
         if (hasActivity){
             $(cell).addClass('selected')
@@ -114,35 +111,14 @@ async function render_calender(){
 const getActivityDays = () => {
     return new Promise(resolve => {
         $.get(`./activity_data/${YEAR}/${MONTH}/`,(days) => {
-            days = String(days);
             if (days === 'None'){
                 resolve(days);
             }else{
-                resolve(days.split(','));
+                resolve(JSON.parse(days));
             }
         });
     });
 };
-
-const checkInclude = (day,array,idx) => {
-    let i = idx
-    console.log(`day: ${day} ${typeof(day)}`);
-    console.log(`array: ${array[i]} ${typeof(parseInt(array[i]))}`);
-    console.log(`idx: ${i} ${typeof(i)}`);
-    // 要素の最後まで確認できた時にはすべて使い終わっている
-    // returnしたiがarrayのポインタになる
-    if (i < array.length){
-        if (day == parseInt(array[i])){
-            i++;
-            return [true,i];
-        // arrayが昇順である前提
-        }else if (day > parseInt(array[i])){
-            i++;
-            return [false,i];
-        };
-    };
-    return [false,i];
-}
 
 // ref: https://sleepless-se.net/2019/12/07/post-with-csrftoken/#google_vignette
 // 2 csrfを取得、設定する関数
@@ -174,12 +150,12 @@ function csrfSafeMethod(method) {
 const postSelectedDays = () => {
     console.log('post');
     const selectedDays = $('.selected');
-    const selectedDaysArray = [];
+    let selectedDaysObj = {};
     for (let i=0; i<selectedDays.length; i++){
-        selectedDaysArray.push(selectedDays[i].textContent);
+        selectedDaysObj[selectedDays[i].textContent] = 'true';
     };
-    console.log(selectedDaysArray)
-    const selectedDaysJson = JSON.stringify(selectedDaysArray);
+    console.log(selectedDaysObj)
+    const selectedDaysJson = JSON.stringify(selectedDaysObj);
     console.log(selectedDaysJson);
     console.log(`./register/${YEAR}/${MONTH}/`);
     $.post(`./register/${YEAR}/${MONTH}/`,{'days':selectedDaysJson},(res) => {
