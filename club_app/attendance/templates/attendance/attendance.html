@@ -14,17 +14,11 @@
 
 {% block content %}
 
-    <form action="" method="post" style="display:none">
-        {% csrf_token %}
-        <input type="text" name="date" id="date">
-        <input type="submit" value="I'm attended!" id="submit">
-    </form>
-    
-    <div id="buttons">
+    <div id="buttons-container">
         <ul>
-            <li><button type="button" id="today">欠席します</button></li>
+            <li><button type="button" id="absent-button">欠席します</button></li>
             {% if request.user.is_staff %}
-                <li><button type="button" id="next-day">活動日の登録</button></li>
+                <li><a href="activity">活動日の登録</a></li>
             {% endif %}
         </ul>
     </div>
