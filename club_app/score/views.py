@@ -55,13 +55,14 @@ class exam_label(View):
         return JsonResponse(exam_label_val, safe=False)
 
 class exam_data(View):
-    def get(self,request, exam_name):
+    def get(self, request, exam_name):
         exam = ExamDB.objects.get(exam_name=exam_name)
-        exam_data_val = list(ScoreDB.objects.filter(exam_name=exam).values_list('user', 'score', flat=True))
+        exam_data_val = list(exam.exam_id.all().values_list('user', 'score'))
         return JsonResponse(exam_data_val, safe=False)
 
 class exam_chart(View):
     def get(self,request, exam_name):
-        exam_chart_user = list(ScoreDB.objects.filter(exam_name=exam_name).values_list('user', flat=True))
-        exam_chart_score = list(ScoreDB.objects.filter(exam_name=exam_name).values_list('score', flat=True))
+        exam = ExamDB.objects.get(exam_name=exam_name)
+        exam_chart_user = list(exam.exam_id.all().values_list('user', flat=True))
+        exam_chart_score = list(exam.exam_id.all().values_list('score', flat=True))
         return JsonResponse([exam_chart_user, exam_chart_score], safe=False)

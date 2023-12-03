@@ -1,11 +1,14 @@
 
 let chart_element = document.getElementById('chart');
 
-window.onload = () => {
+window.onload = async () => {
     console.log('start');
-    select_exam();
-    table_initialization();
-    chart_initialization();
+    await select_exam();
+    await table_initialization();
+    await chart_initialization();
+    document.getElementById("exam-select").onchange = event => {
+        update_table();
+    }
 };
 
 get_exam_label = () => {
@@ -16,15 +19,17 @@ get_exam_label = () => {
     });
 };
 get_exam_data = () => {
+    const exam_name = document.getElementById("exam-select").value;
     return new Promise(resolve => {
-        $.get(`./exam_data/${document.getElementById("exam-select").value}`,(exam_data) => {
+        $.get(`./exam_data/${exam_name}`,(exam_data) => {
             resolve(exam_data);
         });
     });
 };
 get_exam_chart = () => {
     return new Promise(resolve => {
-        $.get(`./exam_chart/${document.getElementById("exam-select").value}`,(exam_chart) => {
+        const exam_name = document.getElementById("exam-select").value;
+        $.get(`./exam_chart/${exam_name}`,(exam_chart) => {
             resolve(exam_chart);
         });
     });
@@ -32,7 +37,7 @@ get_exam_chart = () => {
 
 async function table_initialization() {
     const exam_data = await get_exam_data();
-    grid = new Grid({
+    grid = new gridjs.Grid({
         search: true,
         sort: true,
         columns: ['名前', '点数'],
@@ -42,8 +47,6 @@ async function table_initialization() {
 async function update_table() {
     const exam_data = await get_exam_data();
     grid.updateConfig({
-        search: true,
-        sort: true,
         data: exam_data
     }).forceRender();
 }
@@ -90,9 +93,5 @@ async function select_exam() {
         //select要素にoption要素を追加する
         document.getElementById("exam-select").appendChild(option);
     }
-    document.getElementById("exam-select").onchange = event => {
-        update_table();
-    }
-    
 }
 
