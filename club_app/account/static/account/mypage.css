@@ -5,6 +5,7 @@ html{
 #mypage-conteiner{
     width: 40%;
     margin: auto;
+    padding: 25px;
     display: flex;
     margin-top: 5%;
     flex-direction: column;
@@ -19,7 +20,7 @@ h2{
     padding-right: 0.5em;
     color: #fcbc80;
     font-weight: bold;
-    -webkit-text-stroke: 1px #202020;
+    -webkit-text-stroke: 0.5px #202020;
 }
 form{
     display: flex;

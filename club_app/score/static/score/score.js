@@ -40,6 +40,9 @@ async function table_initialization() {
     grid = new gridjs.Grid({
         search: true,
         sort: true,
+        pagination: {
+            limit: 7
+        },
         columns: ['名前', '点数'],
         data: exam_data
     }).render(document.getElementById("score-table"));

@@ -5,6 +5,29 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    height: 100vh;
+    width: 100vw;
+    
+    & header {
+        display: flex;
+        width: 100%;
+        height: var(--header-height);
+    
+        border-bottom: 1px solid #cccac3;
+        background-color: var(--beige);
+    
+        & a:hover,
+          img:hover{
+            color: #ff5443;
+        }
+    }
+    & #content {
+        padding: 25px;
+        height: calc(100% - var(--header-height));
+    }
+}
+
 button{
     cursor: pointer;
     border: none;
@@ -17,22 +40,6 @@ button{
     --orenge: #fcbc80;
     --beige: #fffaef;
 }
-
-header {
-    display: flex;
-    width: 100%;
-    height: var(--header-height);
-    margin-bottom: 5%;
-
-    border-bottom: 1px solid #cccac3;
-    background-color: var(--beige);
-
-    & a:hover,
-      img:hover{
-        color: #ff5443;
-    }
-}
-
 
 #club_logo {
     position: absolute;
@@ -132,7 +139,7 @@ nav {
     padding: 18px 25px;
     position: relative;
 
-    & button{
+    & p{
         font-family: 'Inter';
         font-size: 1.2em;
         font-weight: bold;

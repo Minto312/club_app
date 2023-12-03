@@ -1,0 +1,37 @@
+#content{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 25px;
+}
+#exam-select-wrap{
+    margin-left: 50px;
+    display: flex;
+    gap: 25px;
+    & p {
+        font-size: 1.6em;
+    }
+    & select {
+        width: 150px;
+        background-color: #fff;
+        border: 1px solid #d2d6dc;
+        border-radius: 5px;
+        font-size: 14px;
+        line-height: 1.45;
+        outline: none;
+        padding: 10px 13px;
+    }
+}
+figure{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#score-table{
+    max-height: 50%;
+    max-width: 90%;
+}
+#chart{
+    max-height: 40%;
+    max-width: 90%;
+}

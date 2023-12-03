@@ -16,7 +16,7 @@ class Score(View):
         }
         print(score)
 
-        return render(request,'score/view.html',context)
+        return render(request,'score/score.html',context)
     
 class Recording(View):
     def get(self,request):
