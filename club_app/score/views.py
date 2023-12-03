@@ -1,5 +1,9 @@
+from venv import create
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.views import View
+
+#from club_app import score
 from .models import ExamDB,ScoreDB
 # Create your views here.
 
@@ -12,7 +16,7 @@ class Score(View):
         }
         print(score)
 
-        return render(request,'score/score.html',context)
+        return render(request,'score/view.html',context)
     
 class Recording(View):
     def get(self,request):
@@ -25,11 +29,39 @@ class Recording(View):
         return render(request,'score/recording.html',context)
     
     def post(self,request):
-        exam = ExamDB.objects.get(exam_name=request.POST['exam-name'])
-        score = ScoreDB.objects.create(
-            user=request.user,
-            exam_name=exam,
-            score=request.POST['score']
-        )
-        score.save()
+        if ExamDB.objects.filter(exam_name=request.POST['exam-name']).exists():
+            exam = ExamDB.objects.get(exam_name=request.POST['exam-name'])  
+            score = ScoreDB.objects.create(
+                user=request.user,
+                exam_name=exam,
+                score=request.POST['score']
+            )
+            score.save()
+        else :
+            exam = ExamDB.objects.create(exam_name=request.POST['exam-name'])
+            exam.save
+            score = ScoreDB.objects.create(
+                user=request.user,
+                exam_name=exam,
+                score=request.POST['score']
+            )
+            score.save()
         return redirect('score:score')
+    
+
+class exam_label(View):
+    def get(self,request):
+        exam_label_val = list(ExamDB.objects.all().values_list('exam_name', flat=True))
+        return JsonResponse(exam_label_val, safe=False)
+
+class exam_data(View):
+    def get(self,request, exam_name):
+        exam = ExamDB.objects.get(exam_name=exam_name)
+        exam_data_val = list(ScoreDB.objects.filter(exam_name=exam).values_list('user', 'score', flat=True))
+        return JsonResponse(exam_data_val, safe=False)
+
+class exam_chart(View):
+    def get(self,request, exam_name):
+        exam_chart_user = list(ScoreDB.objects.filter(exam_name=exam_name).values_list('user', flat=True))
+        exam_chart_score = list(ScoreDB.objects.filter(exam_name=exam_name).values_list('score', flat=True))
+        return JsonResponse([exam_chart_user, exam_chart_score], safe=False)
