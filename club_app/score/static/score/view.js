@@ -1,13 +1,13 @@
-
 let chart_element = document.getElementById('chart');
 
 window.onload = async () => {
     console.log('start');
     await select_exam();
-    await table_initialization();
     await chart_initialization();
-    document.getElementById("exam-select").onchange = event => {
-        update_table();
+    await table_initialization();
+    document.getElementById("exam-select").onchange = async () => {
+        await update_chart();
+        await update_table();
     }
 };
 
@@ -53,7 +53,7 @@ async function update_table() {
 
 async function chart_initialization() {
     const chart_val = await get_exam_chart();
-    new Chart(chart_element, {
+    chart = new Chart(chart_element, {
         type: 'bar',
         data: {
             labels: chart_val[0],
@@ -73,9 +73,26 @@ async function chart_initialization() {
     });
 }
 async function update_chart() {
-    const chart = await get_exam_chart();
-    chart_label = chart[0]
-    chart_data = chart[1]
+    chart.destroy();
+    const chart_val = await get_exam_chart();
+    chart = new Chart(chart_element, {
+        type: 'bar',
+        data: {
+            labels: chart_val[0],
+            datasets: [{
+                label: '',
+                data: chart_val[1],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
 async function select_exam() {
