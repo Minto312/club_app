@@ -14,12 +14,14 @@ button{
 
 :root{
     --header-height: 72px;
+    --orenge: #fcbc80
 }
 
 header {
     display: flex;
     width: 100%;
     height: var(--header-height);
+    margin-bottom: 5%;
 
     border-bottom: 1px solid #cccac3;
     background: #fffaef;
@@ -213,11 +215,4 @@ nav {
     & :hover{
         color: #ff5443;
     }
-}
-
-#content{
-    margin-top: var(--header-height);
-    padding: 25px;
-    padding-top: calc(var(--header-height) + 25px);
-    background-color: #fffaef;
 }
