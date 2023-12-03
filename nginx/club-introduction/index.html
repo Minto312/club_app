@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+        <title>コンピュータ部</title>
+        <link rel="icon" href="icon.ico">
+        <!-- css -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+        <link rel="stylesheet" href="style.css">
+        
+        <!-- js -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <header>
+                <!--ロゴ-->
+                <img src="images/logo01.png" width="auto" height="80px" alt="" id="school">
+                <img src="images/aianCP部copy.png" alt="" width="auto" height="80px" id="club">
+            </header>
+
+            <div id="Slider_container">
+                <!--スライド-->
+                <ul id="Slider">
+                    <!--スライダー要素-->
+                    <li><img src="images/tosho-mark.jpg" alt="東樟ロゴ"></li>
+                    <li><img src="images/xmas_party.jpg" alt="クリスマスパーティー"></li>
+                    <li><img src="images/PC_image.jpg" alt="実習室のパソコン"></li>
+                    <li><img src="images/ponzu.jpg" alt="ぽんず"></li>
+                    <li><img src="images/line_qr.jpg" alt="公式ラインの二次元コード"></li>
+                </ul>
+                <img class="frame" src="images/frame_blue.png" alt="フレーム">
+            </div>
+
+            <!--Slick　構造
+                <ul>
+                    <button .slick-prev .slick-arrow>
+                    ::before{arrow}
+                    <div .slick-list>
+                        <div .slick-track>
+                            <li .slick-slide><img></li>
+                        </div>
+                    </div>
+                    <button .slick-next .slick-arrow>
+                </ul>
+            -->
+
+            <div id="contents">
+                <section id="overview">
+                    <h2>概要</h2>
+                    <div class="note">
+                        <p></p>
+                        <p>コンピュータ部は、活動を通してさまざまな資格取得にチャレンジしています！</p>
+                        <p>全商情報処理検定1級の取得はもちろん、国家試験である「ITパスポート試験」や「基本情報技術者試験」にも挑戦しています‼</p>
+                        <p></p>
+                    </div>
+                </section>
+
+                <section id="about_qualification">
+                    <h2>資格について</h2>
+                    <div class="note">
+                        <p></p>
+                        <p>こんぶが力を入れているのは、情報処理に関する検定だけではありません‼</p>
+                        <p>部活動の時間の中では難しいですが、先生や先輩がいつでも教えてくれます</p>
+                        <P><mark>簿記</mark>や<mark>電卓</mark>、<mark>商業に関する検定</mark>など、幅広い分野について質問できます !</p>
+                        <p></p>
+                    </div>
+                </section>
+
+                <section id="target">
+                    <h2>目指す資格</h2>
+                        <ul class="note">
+                            <li>情報処理検定1級</li>
+                            <li>ITパスポート</li>
+                            <li>基本情報技術者試験</li>
+                            <li>その他自分が欲しいと思った資格</li>
+                            <li><img src="images/qualification.svg" alt="合格証書を持つ人"></li>
+                        </ul>
+                </section>
+                
+                <section id="weekly_schedule">
+                    <h2>活動時間</h2>
+                    <table>
+                        <tr>
+                            <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th id="saturday">土</th><th id="sunday">日</th>
+                        </tr>
+                        <tr>
+                            <td>16:00<br>～<br>17:00</td><td>16:00<br>～<br>17:00</td><td>16:00<br>～<br>17:00</td><td>16:00<br>～<br>17:00</td><td>16:00<br>～<br>17:00</td><td>なし</td><td>なし</td>
+                        </tr>
+                    </table>            
+                </section>
+
+                <section id="place">
+                    <h2>活動場所</h2>
+                    <div class="frame">
+                        <p>実1A・実1B・実1C</p>
+                        <img src="images/blackbord.svg" alt="黒板">
+                    </div>
+                </section>
+                    
+                <section id="club_members">
+                    <h2>部員数</h2>
+                    <div class="frame">
+                        <dl>
+                            <dt>新3年‥</dt><dd><span class="spacing">1</span>9人</dd>
+                        </dl>
+                        <dl>
+                            <dt>新2年‥</dt><dd>17人</dd>
+                        </dl>
+                        <img src="images/whitebord.svg" alt="ホワイトボード">
+                    </div>
+                </section>
+
+                <section id="yearly_schedule">
+                    <h2>年間予定</h2>
+                    <div id="calender_box">
+                        <dl>
+                            <dt><span class="spacing">1</span>4月</dt><dd></dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="spacing">1</span>5月</dt><dd></dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="spacing">1</span>6月</dt><dd></dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="spacing">1</span>7月</dt><dd>ビジネス文書実務検定</dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="spacing">1</span>8月</dt><dd></dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="spacing">1</span>9月</dt><dd>情報処理検定2級</dd>
+                        </dl>
+                        <dl>
+                            <dt>10月</dt><dd></dd>
+                        </dl>
+                        <dl>
+                            <dt>11月</dt><dd>ビジネス文書実務検定</dd>
+                        </dl>
+                        <dl>
+                            <dt>12月</dt><dd></dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="spacing">1</span>1月</dt><dd>情報処理検定1級</dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="spacing">1</span>2月</dt><dd></dd>
+                        </dl>
+                        <dl>
+                            <dt><span class="spacing">1</span>3月</dt><dd></dd>
+                        </dl>
+                    </div>
+                </section>
+
+                <section id="message">
+                    <h2>顧問からのメッセージ</h2>
+                    <div class="note">
+                        <p></p>
+                        <p>資格取得、大会への参加を通じて人間的な成長をすることを目標としています。</p>
+                        <p>「情報系の資格を取りたい！」と思っているあなた！</p>
+                        <p>一緒に頑張ってみませんか？</p>
+                        <p></p>
+                    </div>
+                </section>
+
+                <section id="PRvideo">
+                    <h2>部活紹介動画</h2>
+                    <div class="frame">
+                        <!--<div class="switch">
+                            <button id="real">本物</button>
+                            <button id="fake">ボツ</button>
+                        </div>-->
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Uj67pEohLao" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <div id="block_video">
+                            <p>外で見てる人はきをつけてね！</p>
+                            <button id="see_video">みてみる</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="last">
+                    <h2>最後に</h2>
+                    <div class="note">
+                        <p></p>
+                        <p>最後まで見てくれてありがとう！</p>
+                        <p>こんぶに興味を持ってくれたかな？</p>
+                        <p>質問がある人は公式ラインからどうぞ!!</p>
+                        <p></p>
+                    </div>
+                    <img src="images/line_qr.jpg" alt="Line">
+                </section>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
