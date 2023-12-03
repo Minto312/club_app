@@ -14,7 +14,8 @@ button{
 
 :root{
     --header-height: 72px;
-    --orenge: #fcbc80
+    --orenge: #fcbc80;
+    --beige: #fffaef;
 }
 
 header {
@@ -24,7 +25,7 @@ header {
     margin-bottom: 5%;
 
     border-bottom: 1px solid #cccac3;
-    background: #fffaef;
+    background-color: var(--beige);
 
     & a:hover,
       img:hover{

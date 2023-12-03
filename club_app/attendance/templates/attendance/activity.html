@@ -13,7 +13,14 @@
 {% endblock %}
 
 {% block content %}
-    <p><a href="../">出席表に戻る</a></p>
+
+    <div class="buttons-container">
+        <ul>
+            <li><a href="../">出席表に戻る</a></li>
+            <li><button id="submit" >登録</button></li>
+        </ul>
+    </div>
+
     <div id="calender">
         <table>
             <tbody>
@@ -28,5 +35,4 @@
             </tbody>
         </table>
     </div>
-    <button id="submit" >登録</button>
 {% endblock %}
