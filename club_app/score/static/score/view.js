@@ -80,18 +80,10 @@ async function update_chart() {
 
 async function select_exam() {
     const exam_label = await get_exam_label();
-    
-    //select要素を取得する
     for (let index = 0; index < exam_label.length; index++) {
-        //option要素を新しく作る
         const option = document.createElement('option');
-    
-        //option要素にvalueと表示名を設定
         option.value = exam_label[index];
         option.textContent = exam_label[index];
-    
-        //select要素にoption要素を追加する
         document.getElementById("exam-select").appendChild(option);
     }
 }
-

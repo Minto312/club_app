@@ -2,7 +2,7 @@ from venv import create
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.views import View
-
+from account.models import CustomUser
 #from club_app import score
 from .models import ExamDB,ScoreDB
 # Create your views here.
@@ -57,12 +57,12 @@ class exam_label(View):
 class exam_data(View):
     def get(self, request, exam_name):
         exam = ExamDB.objects.get(exam_name=exam_name)
-        exam_data_val = list(exam.exam_id.all().values_list('user', 'score'))
+        exam_data_val = [(CustomUser.objects.get(id=userid).username, score) for userid, score in exam.exam_id.all().values_list('user_id', 'score')]
         return JsonResponse(exam_data_val, safe=False)
 
 class exam_chart(View):
     def get(self,request, exam_name):
         exam = ExamDB.objects.get(exam_name=exam_name)
-        exam_chart_user = list(exam.exam_id.all().values_list('user', flat=True))
+        exam_chart_user = [CustomUser.objects.get(id=userid).username for userid in exam.exam_id.all().values_list('user_id', flat=True)]
         exam_chart_score = list(exam.exam_id.all().values_list('score', flat=True))
         return JsonResponse([exam_chart_user, exam_chart_score], safe=False)
