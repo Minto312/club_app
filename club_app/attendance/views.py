@@ -61,10 +61,12 @@ def attend(request, is_attend):
     username = request.user.username
 
     # アクセスした際のユーザーと日付で登録
+    print(f'=============\n\n{is_attend=}\n\n===============')
+    print(f'=============\n\n{bool(is_attend)=}\n\n===============')
     insert_data =  {
         'name':username,
         'date':datetime.now(),
-        'attended': bool(is_attend)
+        'attended': is_attend == 'True'
     }
     
     if not AttendanceDB.objects.filter(
@@ -125,10 +127,7 @@ def register(request, year: int, month: int):
     print(f'=============\n\naccessed register\n\n{request.user.username=} \n\n===============')
 
     days = request.POST['days']
-    # days = re.sub(r'\[|\]|\"', '', days)
     print(f'=============\n\n{days=}\n\n===============')
-    # days = list(map(int, days.split(',')))
-    # print(f'=============\n\n{days=}\n\n===============')
     insert_data =  {
         'year': year,
         'month': month,

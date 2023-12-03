@@ -26,23 +26,22 @@
                         <a href="{% url 'home:home' %}">ホーム</a>
                     </li>
                     <li>
-                        <a href="">部活動HP</a>
+                        <a href="/club-introduction/" target="_blank">部活動HP</a>
                     </li>
                     <li>
-                        <a href="">公式LINE</a>
+                        <a href="https://lin.ee/HQSfqEZ" target="_blank">公式LINE</a>
                     </li>
                 </ul>
-                <div id="tools" class="ready-hover">
-                    <p>ツール</p>
+                <div id="tools" class="ready-hover accordion">
+                    <p><button>ツール</button></p>
                     <ul id="tool-menu">
-                        <li><a href="{% url 'attendance:attendance' %}">attendance</a></li>
-                        <li><a href="{% url 'information:information' %}">information</a></li>
-                        <li><a href="{% url 'score:score' %}">score</a></li>
-                        <li><a></a></li>
-                        <li><a></a></li>
+                        <li><a href="{% url 'attendance:attendance' %}">出席表</a></li>
+                        <li><a href="{% url 'information:information' %}">配布物</a></li>
+                        <li><a href="{% url 'score:score' %}">点数表</a></li>
+                        <li><a href="#">資格試験</a></li>
                     </ul>
                 </div>
-                <div id="user_icon" class="ready-hover">
+                <div id="user_icon" class="ready-hover accordion">
                     <img src="/media/{{ request.user.profile.profile_image }}" alt="ユーザーアイコン">
                     <ul id="user-menu">
                         <li>
@@ -62,8 +61,10 @@
             </nav>
         </header>
 
-        {% block content %}
-        
-        {% endblock %}
+        <div id="content">
+            {% block content %}
+            
+            {% endblock %}
+        </div>
     </body>
 </html>

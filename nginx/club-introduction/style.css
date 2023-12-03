@@ -1,0 +1,399 @@
+@charset "UTF-8";
+@font-face {
+    font-family: "tanuki_chalk";
+    src: url("fonts/tanuki_font.woff2") format("woff2");
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color: #f0f0f0;
+}
+
+#container{
+    width: 1040px;
+    margin: 40px auto;
+}
+
+
+/*---------- ヘッダー ----------*/
+
+header{
+    display: flex;
+    background-color: #ffffff;
+    padding: 16px 10%;
+}
+#club{
+    margin-left: auto;
+}
+/*========== ヘッダー ==========*/
+
+
+
+/*---------- スライドショー ----------*/
+
+#Slider_container{
+    position: relative;
+    width: 100%;
+    margin: 128px 0;
+    padding: 64px 0;
+    background: url(images/wood_wall.jpg);
+}
+#Slider_container .frame{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 428px;
+    border: solid 5px #000000;
+}
+#Slider{
+}
+#Slider img{
+    height: 300px;
+    margin: auto;
+}
+.slick-arrow{
+    height: 64px;
+    z-index: 2;
+}
+.slick-prev{
+    left: 6px;
+}
+.slick-next{
+    right: 30px;
+}
+.slick-arrow::before{
+    font-size: 45px;
+}
+#Slider li{
+}
+
+/*========== スライドショー ==========*/
+
+
+
+/*---------- コンテンツ ----------*/
+
+/*------- 全般 -------*/
+#contents{
+    background-color: #f0f0f0e0;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+#contents section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 8px solid #111111;
+    border-radius: 8px;
+    width: 70%;
+    margin-bottom: 48px;
+    margin: auto;
+}
+#contents h2{
+    text-align: center;
+    border-bottom: 8px solid #111111;
+    background-color: #dfb554b7;
+    border-radius: 4px;
+    padding: 8px 8px 6px;
+    margin-top: 64px;
+}
+#contents p{
+    font-size: 1em;
+    line-height: 1.5em;
+    margin: 8px 0;
+}
+#contents section > :nth-child(2){
+    margin-top: 48px;
+}
+#contents section > :last-child{
+    margin-bottom: 48px;
+}
+/*======= 全般 =======*/
+
+
+/*------- .note -------*/
+.note{
+    background-color: #fef8eb;
+    border: solid 2px #999999; 
+    padding: 0 1em 0 2em;
+    position: relative;
+}
+.note p{
+    border-bottom: dashed 1px #cccccc;
+    line-height: 1.5;
+    padding: 0.5em 0 0.5em 0.5em;
+}
+.note p:last-of-type{
+    border-bottom: none;
+}
+.note p::before{
+    content: "";
+    position: absolute;
+    border-right: dotted 10px #dddddd;
+    height:90%;
+    top:0.5em;
+    left:0.5em;
+}
+/*======= .note =======*/
+
+
+/*------- .spacing -------*/
+.spacing{
+    opacity: 0;
+}
+/*======= .spacing =======*/
+
+
+
+/*------- 概要 -------*/
+#overview{
+    position: relative;
+}
+#overview .note{
+    width: 90%;
+}
+/*======= 概要 =======*/
+
+/*------- 資格について -------*/
+#about_qualification mark{
+    background: linear-gradient(to bottom,transparent 40%,#ffff00 40% 80%,transparent 80%);
+}
+/*======= 資格について =======*/
+
+/*------- 目指す資格 -------*/
+#target .frame{
+    width: fit-content;
+    position: relative;
+}
+#target ul{
+    width: fit-content;
+    background-color: #fef8eb;
+    list-style-type: none;
+    padding: 16px 0;
+    padding-right: 15%;
+}
+#target li{
+    font-size: 1em;
+    position: relative;
+    border-bottom: dashed 1px #cccccc;
+    line-height: 1.5em;
+    padding: 0.5em 0 0.5em 3em;
+}
+#target li::before{
+    content: "・";
+    position: absolute;
+    left: 2em;
+}
+#target li::after{
+    content: "";
+    position: absolute;
+    border-right: dotted 9px #aaaaaa;
+    height: 90%;
+    top: 0;
+    left: 8px;
+}
+#target li:last-child{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+#target li:last-child::before,
+#target li:last-child::after{
+    display: none;
+}
+#target img{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+/*======= 目指す資格 =======*/
+
+/*------- 活動予定 -------*/
+#weekly_schedule table{
+    border-collapse: collapse;
+    margin: 48px 0;
+    background-color: #fdfdfd;
+}
+#saturday{
+    color: #4343c7;
+}
+#sunday{
+    color: #ce4d29;
+}
+#weekly_schedule table *{
+    border: 1px solid #000000;
+    text-align: center;
+    padding: 0 10px;
+    height: 40px;
+}
+/*======= 活動予定 =======*/
+
+/*------- 活動場所 -------*/
+#place .frame{
+    padding: 0;
+    position: relative;
+    padding: 5em 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+#place p{
+    font-family: "tanuki_chalk";
+    color: #ffffff;
+    opacity: 0.9;
+    font-size: 3em;
+    position: relative;
+    z-index: 2;
+}
+#place img{
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: -1.5em;
+}
+/*======= 活動場所 =======*/
+
+/*------- 部員数 -------*/
+#club_members .frame{
+    position: relative;
+    padding: 2em 9em 6em;
+    margin-bottom: 0 !important;
+}
+#members_box{
+    margin: auto;
+}
+#club_members dl{
+    display: flex;
+    justify-content: center;
+}
+#club_members dt,
+#club_members dd{
+    font-size: 2em;
+    line-height: 2em;
+    position: relative;
+    z-index: 2;
+}
+#club_members img{
+    position: absolute;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 3em;
+}
+/*======= 部員数 =======*/
+
+/*------- 年間予定 -------*/
+#calender_box{
+    width: 80%;
+}
+#yearly_schedule dl{
+    width: 100%;
+    display: flex;
+    background-color: #f0f0f0;
+    border: solid 1px #000000;
+    border-bottom: none;
+}
+#yearly_schedule dl:last-child{
+    border-bottom: solid 1px #000000;
+}
+#yearly_schedule dt{
+    width: fit-content;
+    font-size: 1.5em;
+    line-height: 2em;
+    text-align: center;
+    padding: 0 1em;
+    border-right: solid 1px #000000;
+}
+#yearly_schedule dd{
+    margin: auto 0;
+    padding: 0 1em;
+    font-size: 1em;
+    text-indent: 1em;
+}
+/*======= 年間予定 =======*/
+
+/*------- 部活紹介動画 -------*/
+#PRvideo .frame{
+    position: relative;
+    width: 80%;
+}
+#PRvideo iframe{
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: 100%;
+}
+#block_video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fffffff0;
+    padding: 10% 0;
+    text-align: center;
+    display: block;
+    z-index: 1;
+}
+#block_video p{
+    font-size: 1.5em;
+}
+#PRvideo button{
+    margin-top: 16px;
+    padding: 32px;
+    border-radius: 4px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+/*======= 部活紹介動画 =======*/
+
+/*------- 最後に -------*/
+#last img{
+    width: 80%;
+    margin-top: 16px;
+    border: solid 1px #000000;
+}
+/*======= 最後に =======*/
+
+
+/*========== コンテンツ ==========*/
+
+
+
+
+
+@media screen and (max-width:1100px) {
+    #container{
+        width: 100%;
+    }
+    body{
+        font-size: 1.5em;
+    }
+    #contents section{
+        width: 90%;
+    }
+}
+
+/*
+@media screen and (max-width:750px) {
+    #container{
+        width: 100%;
+    }
+    header p{
+        font-size: 2.79em;
+    }
+    #contents section{
+        width: 95%;
+    }
+}*/
