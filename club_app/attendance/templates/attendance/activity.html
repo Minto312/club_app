@@ -13,21 +13,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>This is Attendance</h1>
-    <h2>今日は<time id="current-date"></time>です</h2>
-
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="text" name="date" id="date">
-        <input type="submit" value="I'm attended!" id="submit">
-    </form>
-    
-    <h2>{{ posted }}</h2>
-    <ul>
-        {% for record in records %}
-        <li>{{ record.name}} : {{ record.date }}</li>
-        {% endfor %}
-    </ul>
+    <p><a href="../">出席表に戻る</a></p>
     <div id="calender">
         <table>
             <tbody>
@@ -42,4 +28,5 @@
             </tbody>
         </table>
     </div>
+    <button id="submit" >登録</button>
 {% endblock %}

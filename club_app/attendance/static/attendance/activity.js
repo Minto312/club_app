@@ -33,15 +33,23 @@ window.onload = () => {
     });
 
     // 日付をクリックした時の処理
-    $('td').on('click',() => {
+    $('td').on('click',function(){
         console.log('clicked');
         console.log($(this).text);
+        console.log($(this));
         if ($(this).text == '') return;
         if ($(this).hasClass('selected')){
             $(this).removeClass('selected');
         }else{
             $(this).addClass('selected');
         }
+    });
+
+    // 送信ボタンを押した時の処理
+    $('button#submit').on('click',() => {
+        console.log('submit');
+        csrfSetting();
+        postSelectedDays();
     });
 };
 
@@ -65,7 +73,6 @@ async function render_calender(){
     const ACTIVITY_DAYS = await getActivityDays();
 
     let writeDay = 1;
-    let arrayCheckIdx = 0;
     let hasActivity;
 
     // 月初めの曜日まで空白を埋める
@@ -92,7 +99,7 @@ async function render_calender(){
         if (ACTIVITY_DAYS === 'None'){
             hasActivity = $(cell).hasClass('weekday');
         }else{
-            [hasActivity,arrayCheckIdx] = checkInclude(writeDay,ACTIVITY_DAYS,arrayCheckIdx);
+            hasActivity = ACTIVITY_DAYS[writeDay] !== undefined;
         }
         if (hasActivity){
             $(cell).addClass('selected')
@@ -101,29 +108,57 @@ async function render_calender(){
     };
 };
 
-getActivityDays = () => {
+const getActivityDays = () => {
     return new Promise(resolve => {
-        $.get(`./activity_data/${YEAR}/${MONTH}/`,(daysJson) => {
-            days = JSON.parse(daysJson);
-            resolve(days);
+        $.get(`./activity_data/${YEAR}/${MONTH}/`,(days) => {
+            if (days === 'None'){
+                resolve(days);
+            }else{
+                resolve(JSON.parse(days));
+            }
         });
     });
 };
 
-checkInclude = (day,array,idx) => {
-    let i = idx
-    // 要素の最後まで確認できた時にはすべて使い終わっている
-    // returnしたiがarrayのポインタになる
-    if (i < array.length){
-        if (day == array[i]){
-            return [true,i];
-        // arrayが昇順である前提
-        }else if (day > array[i]){
-            i++;
-            return [false,i];
-        };
-    };
-    return [false,i];
+// ref: https://sleepless-se.net/2019/12/07/post-with-csrftoken/#google_vignette
+// 2 csrfを取得、設定する関数
+function getCookie(key) {
+    var cookies = document.cookie.split(';');
+    for (var _i = 0, cookies_1 = cookies; _i < cookies_1.length; _i++) {
+        var cookie = cookies_1[_i];
+        var cookiesArray = cookie.split('=');
+        if (cookiesArray[0].trim() == key.trim()) {
+            return cookiesArray[1]; // (key[0],value[1])
+        }
+    }
+    return '';
+}
+function csrfSetting() {
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
 }
 
-
+// 3 POST以外は受け付けないようにする関数
+function csrfSafeMethod(method) {
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+const postSelectedDays = () => {
+    console.log('post');
+    const selectedDays = $('.selected');
+    let selectedDaysObj = {};
+    for (let i=0; i<selectedDays.length; i++){
+        selectedDaysObj[selectedDays[i].textContent] = 'true';
+    };
+    console.log(selectedDaysObj)
+    const selectedDaysJson = JSON.stringify(selectedDaysObj);
+    console.log(selectedDaysJson);
+    console.log(`./register/${YEAR}/${MONTH}/`);
+    $.post(`./register/${YEAR}/${MONTH}/`,{'days':selectedDaysJson},(res) => {
+        console.log(res);
+    });
+}
