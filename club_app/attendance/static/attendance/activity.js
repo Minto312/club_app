@@ -160,5 +160,6 @@ const postSelectedDays = () => {
     console.log(`./register/${YEAR}/${MONTH}/`);
     $.post(`./register/${YEAR}/${MONTH}/`,{'days':selectedDaysJson},(res) => {
         console.log(res);
+        alert('登録しました');
     });
 }

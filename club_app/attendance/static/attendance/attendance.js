@@ -34,6 +34,7 @@ window.onload = () => {
 
     $('#absent-button').on('click',() => {
         $.get(`./attend/False`,(res) => {
+            alert('欠席にしました');
             console.log(res);
         });
     });

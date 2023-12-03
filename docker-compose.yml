@@ -30,10 +30,10 @@ services:
 
     environment:
       IS_PRODUCT: 'FALSE'
-      HOST: 'localhost'
+      HOST: '*'
       IS_DOCKER: 'True'
 
-    # restart: always
+    restart: always
 
     depends_on:
       - nginx

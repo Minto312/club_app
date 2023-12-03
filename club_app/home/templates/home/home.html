@@ -1,16 +1,25 @@
 {% extends 'club_app/base.html' %}
 
 {% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/home.css' %}">
 {% endblock %}
 
 {% block content %}
-    <h1>come to My Club App</h1>
-    <p>This is the home page.</p>
-    <ul>
-        <li><a href="{% url 'attendance:attendance' %}">attendance</a></li>
-        <li><a href="{% url 'information:information' %}">information</a></li>
-        <li><a href="{% url 'score:score' %}">score</a></li>
-        <li><a></a></li>
-        <li><a></a></li>
-    </ul>
+    <div id="attendance-container" class="box">
+        <p class="img-parent"><img src="{% static 'home/attendance-back.png' %}" alt="出席表の画像"></p>
+        <p class="link-parent"><a href="{% url 'attendance:attendance' %}"><span>出席表</span></a></p>
+    </div>
+    <div id="information-container" class="box">
+        <p class="img-parent"><img src="{% static 'home/information-back.png' %}" alt="お知らせの画像"></p>
+        <p class="link-parent"><a href="{% url 'information:information' %}"><span>お知らせ</span></a></p>
+    </div>
+    <div id="score-container" class="box">
+        <p class="img-parent"><img src="{% static 'home/score-back.png' %}" alt="点数表の画像"></p>
+        <p class="link-parent"><a href="{% url 'score:score' %}"><span>点数表</span></a></p>
+    </div>
+    <div id="certificate-container" class="box">
+        <p class="img-parent"><img src="{% static 'home/certificate-back.png' %}" alt="資格試験の画像"></p>
+        <p class="link-parent"><a href="#"><span>資格試験</span></a></p>
+    </div>
 {% endblock %}
