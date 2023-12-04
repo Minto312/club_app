@@ -2,6 +2,8 @@
 
 {% block head %}
     {% load static%}
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <script src="{% static 'score/recording.js' %}"></script>
     <link rel="stylesheet" href="{% static 'score/recording.css' %}">
 {% endblock %}
@@ -12,15 +14,15 @@
         <h1>テストの記録</h1>
         <form action="" method="post">
             {% csrf_token %}
-            <!--<select name="exam-name" id="exam-name">
-                {% for exam in exams %}
-                    <option value="{{ exam.exam_name }}">{{ exam.exam_name }}</option>
-                {% endfor %}
-            </select>-->
-
+            
             <div id="exam-name-wrap">
                 <label for="exam-name">試験名</label>
-                <input name="exam-name" id="exam-name">
+                <input list="exam" name="exam-name" id="exam-name">
+                <datalist  name="exam" id="exam">
+                    {% for exam in exams %}
+                        <option value="{{ exam.exam_name }}"></option>
+                    {% endfor %}
+                </datalist >
             </div>
             <div id="score-wrap">
                 <label for="score">点数</label>
