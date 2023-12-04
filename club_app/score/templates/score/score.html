@@ -19,9 +19,16 @@
         <p>試験名</p>
         <select name="exam" id="exam-select">
         </select>
+        <a href="http://127.0.0.1:8000/score/recording">
+            <div>
+                データを新規登録 
+            </div>
+        </a>
     </div>
     <figure>
         <div id="score-table"></div>
-        <canvas id="chart"></canvas>
+        <div id="chart_wrap">
+            <canvas id="chart"></canvas>
+        </div>
     </figure>
 {% endblock %}

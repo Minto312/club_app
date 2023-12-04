@@ -30,7 +30,6 @@ class Attendance(View):
 
 import json
 from datetime import datetime
-import pytz
 def attendance_data(request, year, month):
     print(f'==============\n\nrun data\n\n============')
 

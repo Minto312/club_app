@@ -150,6 +150,7 @@ nav {
         color: inherit;
     }
     & ul{
+        z-index: 999;
         width: 5em;
         left: 0.5em;
     }
@@ -178,6 +179,7 @@ nav {
     }
 
     & ul{
+        z-index: 999;
         position: absolute;
         left: -5em;
         width: 9em;

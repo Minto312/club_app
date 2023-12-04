@@ -38,6 +38,8 @@ get_exam_chart = () => {
 async function table_initialization() {
     const exam_data = await get_exam_data();
     grid = new gridjs.Grid({
+        height: '100%',
+        width: '100%',
         search: true,
         sort: true,
         pagination: {
@@ -57,6 +59,8 @@ async function update_table() {
 async function chart_initialization() {
     const chart_val = await get_exam_chart();
     chart = new Chart(chart_element, {
+        responsive: true,
+        maintainAspectRatio: false,
         type: 'bar',
         data: {
             labels: chart_val[0],
@@ -74,6 +78,8 @@ async function chart_initialization() {
             }
         }
     });
+    chart.canvas.parentNode.style.height = '50vh';
+    chart.canvas.parentNode.style.width = '90%';
 }
 async function update_chart() {
     chart.destroy();
