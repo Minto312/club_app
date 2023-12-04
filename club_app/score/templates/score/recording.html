@@ -2,8 +2,8 @@
 
 {% block head %}
     {% load static%}
-    <script src="{% static 'club_app/js/recording.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'club_app/css/recording.css' %}">
+    <script src="{% static 'score/recording.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'score/recording.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -26,8 +26,9 @@
                 <label for="score">点数</label>
                 <input type="number" name="score" id="score">
             </div>
-            <input type="submit" value="記録">
-
+            <div id="submit-wrap">
+                <input type="submit" value="記録">
+            </div>
         </form>
 
     
