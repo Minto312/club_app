@@ -50,8 +50,12 @@ figure{
     display: flex;
     align-items: center;
 }
-#chart-wrap{
+#chart_wrap{
     display: flex;
     justify-content: center;
     align-items: end;
+    & #chart {
+        height: 100% !important;
+        width: 100% !important;
+    }
 }
