@@ -4,9 +4,6 @@
 
 {% block head %}
     <title>information</title>
-
-    <!-- 休日判定 -->
-    <script src="https://cdn.jsdelivr.net/gh/osamutake/japanese-holidays-js@v1.0.10/lib/japanese-holidays.min.js"></script>
     {% load static%}
     <script src="{% static 'information/information.js' %}"></script>
     <link rel="stylesheet" href="{% static 'information/information.css' %}">
@@ -14,35 +11,8 @@
 
 {% block content %}
     <h1>This is information</h1>
-    <h2>今日は<time id="html_date"></time>です</h2>
-    
-    <form method="post">
-        {% csrf_token %}
-        <label for="date">日付:</label><br>
-        <input type="date" id="date" name="date"><br>
-        <label for="has_club_activity">部活動がある:</label><br>
-        <input type="checkbox" id="has_club_activity" name="has_club_activity" checked><br>
-        <input type="submit" value="Submit">
-    </form>
-    
-    <h2>{{ posted }}</h2>
-    <ul>
-        {% for record in records %}
-        <li>{{ record.date }}</li>
-        {% endfor %}
-    </ul>
-    <div id="calender">
-        <table>
-            <tbody>
-                <tr><th colspan="7" id="TableHead">YYYY-MM</th></tr>
-                <tr><th class="Sunday">日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th class="Saturday">土</th></tr>
-                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Saturday"></td></tr>
-                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Saturday"></td></tr>
-                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Saturday"></td></tr>
-                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="cellToday"></td></tr>
-                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Holiday"></td></tr>
-                <tr><td class="Sunday"></td><td></td><td></td><td></td><td></td><td></td><td class="Saturday"></td></tr>
-            </tbody>
-        </table>
-    </div>
+    {% for exam in exams %}
+        <option value="{{ exam.exam_name }}"></option>
+    {% endfor %}
 {% endblock %}
+
