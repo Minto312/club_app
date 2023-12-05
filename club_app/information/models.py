@@ -9,5 +9,5 @@ class Message_table(models.Model):
     image_message = models.ImageField(upload_to='message/image_message/', default=None)
     file_message = models.FileField(upload_to='message/file_message/', default=None)
     #send_date
-    send_date = models.DateTimeField(default=timezone.now)
+    send_date = models.DateTimeField(auto_now=True)
     
