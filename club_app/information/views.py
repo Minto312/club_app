@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.views import View
 from .models import Message_table
 
+
 class Information(View):
 
     def get(self,request):
@@ -19,16 +20,15 @@ class Information(View):
             if message.file_message :
                 message_context.append(f'<div class="file-message"><a href="/media/{message.file_message}" download="{message.file_message.name}">{message.file_message.name}</a></div>')
             message_context_list.append(''.join(message_context))
+
         context = {'messages':message_context_list}
 
         return render(request,'information/information.html', context)
 
     def post(self,request):
-
         text_message = request.POST['text-message']
         image_message = request.FILES.get('image-message', None)
         file_message = request.FILES.get('file-message', None)
-
         Message_table.objects.create(text_message=text_message, image_message=image_message, file_message=file_message)
 
         messages_id = Message_table.objects.order_by('send_date').reverse().values('message_id')
