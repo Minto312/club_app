@@ -11,8 +11,31 @@
 
 {% block content %}
     <h1>This is information</h1>
-    {% for exam in exams %}
-        <option value="{{ exam.exam_name }}"></option>
-    {% endfor %}
+    <div>
+        <h2>新規投稿</h2>
+        <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-box">
+                    <label for="text-message">テキストメッセージ</label>
+                    <input type="text" name="text-message" id="text-message" class="input-text">
+                </div>
+                <div class="form-box">
+                    <label for="image-message">画像の添付</label>
+                    <input type="file" name="image-message" id="image-message" class="input-text">
+                </div>
+                <div class="form-box">
+                    <label for="file-message">ファイルの添付</label>
+                    <input type="file" name="file-message" id="file-message" class="input-text">
+                </div>
+                <input type="submit" value="送信" id="submit">
+            </form>
+    </div>
+    <div>
+        <h2>投稿一覧</h2>
+        <div class="message-box">
+            {% for message in messages %}
+                {{ message | safe}}
+            {% endfor %}
+        </div>
 {% endblock %}
 
