@@ -29,8 +29,8 @@ services:
         target: /var/run/mysqld/
 
     environment:
-      IS_PRODUCT: 'FALSE'
-      HOST: '*'
+      IS_PRODUCT: 'True'
+      HOST: 'mel.f5.si'
       IS_DOCKER: 'True'
 
     restart: always
@@ -47,6 +47,7 @@ services:
 
     ports:
       - 80:80
+      - 443:443
 
     volumes:
       - type: volume
