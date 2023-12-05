@@ -26,8 +26,8 @@ class Information(View):
     def post(self,request):
 
         text_message = request.POST['text-message']
-        image_message = request.POST['image-message']
-        file_message = request.POST['file-message']
+        image_message = request.FILES['image-message']
+        file_message = request.FILES['file-message']
 
         Message_table.objects.create(text_message=text_message, image_message=image_message, file_message=file_message)
 
