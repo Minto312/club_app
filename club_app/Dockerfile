@@ -22,8 +22,10 @@ RUN mkdir /app/tmp/sockets/ -p && \
 COPY . .
 
 # RUN bash ./del_migrate.sh && \
-RUN python3 manage.py makemigrations && \
-    python3 manage.py migrate && \
-    python3 manage.py collectstatic
+# RUN python3 manage.py makemigrations && \
+#     python3 manage.py migrate && \
+#     python3 manage.py collectstatic
 
-CMD ["uwsgi","--ini","uwsgi.ini"]
+# CMD ["uwsgi","--ini","uwsgi.ini"]
+
+CMD ["bash","./entrypoint.sh"]
