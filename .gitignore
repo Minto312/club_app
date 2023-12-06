@@ -1,5 +1,7 @@
 migrations/
 !migrations/__init__.py
+.well-known/
+nginx/etc/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
