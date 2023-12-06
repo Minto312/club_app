@@ -7,6 +7,7 @@ from .models import Message_table
 logger = logging.getLogger(__name__)
 
 import pytz
+
 jst = pytz.timezone('Asia/Tokyo')
 
 class Information(View):
@@ -18,8 +19,7 @@ class Information(View):
         
         for message_id in messages_id:
             message = Message_table.objects.get(message_id=message_id['message_id'])
-            message_context = [f'<div id="message-id-{str(message_id)}" class="message"><p>{str(message.send_date.astimezone(jst).strftime('%Y-%m-%d %H:%M'))}</p>']
-
+            message_context = [f'<div id="message-id-{str(message_id)}" class="message"><p>{str(message.send_date.astimezone(jst).strftime("%Y/%m/%d %H:%M"))}</p>']
             if message.text_message :
                 message_context.append(f'<div class="text-message"><p>{message.text_message}</p></div>')
             if message.image_message :
@@ -39,5 +39,6 @@ class Information(View):
         image_message = request.FILES.get('image-message', None)
         file_message = request.FILES.get('file-message', None)
         Message_table.objects.create(text_message=text_message, image_message=image_message, file_message=file_message)
+
         logger.debug(f'User {request.user.username} posted message {text_message} {image_message} {file_message}')
-        return redirect('http://10.8.0.10:8000/information')
+        return redirect('information:information')
