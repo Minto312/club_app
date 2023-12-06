@@ -1,38 +1,21 @@
+import logging
 from django.shortcuts import render, HttpResponse, redirect
 from django.views import View
 from .models import AttendanceDB, ScheduleDB
 # Create your views here.
 
+logger = logging.getLogger(__name__)
 class Attendance(View):
     def get(self,request):
+        logger.info(f'User {request.user.username} accessed attendance')
         return render(request,'attendance/attendance.html')
-
-    def post(self,request):
-        print('==============\n\nposted run\n\n============')
-
-        date = request.POST['date']
-        print(f'============\n\n{date}\n\n===========')
-
-        # ボタンから日付を登録
-        insert_data =  {
-            'name':request.user.username,
-            'date':date,
-            'attended':True
-        }
-        insertion = AttendanceDB(**insert_data)
-        insertion.save()
-
-        return_data = {'posted':'you posted!'}
-
-        return render(request,'attendance/attendance.html',return_data)
-
 
 
 import json
 from datetime import datetime
+import pytz
 def attendance_data(request, year, month):
-    print(f'==============\n\nrun data\n\n============')
-
+    logger.info(f'User {request.user.username} accessed attendance data')
     username = request.user.username
 
     extract_condition = {
@@ -50,13 +33,12 @@ def attendance_data(request, year, month):
         attended_days[date.day] = attend_condition
 
     return_data = json.dumps(attended_days)
-    print(f'==================\n\n/data/  {return_data=}\n\n=================')
+    logger.debug(f'User {request.user.username} accessed attendance data: {return_data}')
     return HttpResponse(return_data)
 
 
 def attend(request, is_attend):
-    print(f'=============\n\naccessed QR\n\n{request.user.username=} \n\n===============')
-
+    logger.info(f'User {request.user.username} accessed attend')
     username = request.user.username
 
     # アクセスした際のユーザーと日付で登録
@@ -81,8 +63,8 @@ def attend(request, is_attend):
 
 
 class Activity(View):
-
     def get(self, request):
+        logger.info(f'User {request.user.username} accessed activity')
         # すべてのレコードを表示
         select_all = ScheduleDB.objects.all()  # 予定表のレコードを取得
 
@@ -93,19 +75,9 @@ class Activity(View):
         
         return render(request, 'attendance/activity.html', return_data)
 
-    def post(self, request):
-        # 新しいレコードを作成
-        date = request.POST.get('date')
-        # ボタンから日付を登録
-        insert_data =  {
-            'date':date,
-            'has_club_activity':True
-        }
-        insertion = ScheduleDB(**insert_data)
-        insertion.save()
-        return redirect('information')
 
 def activity_data(request, year, month):
+    logger.info(f'User {request.user.username} accessed activity data')
     extract_condition = {
         'year': year,
         'month': month
@@ -117,30 +89,34 @@ def activity_data(request, year, month):
         scheduled_days = scheduled_dates[0].days
     else:
         scheduled_days = 'None'
-    return_data = scheduled_days
-    print(f'==================\n\n/data/  {return_data=}\n\n=================')
-    return HttpResponse(return_data)
+        
+    logger.debug(f'User {request.user.username} accessed activity data: {scheduled_days}')
+    return HttpResponse(scheduled_days)
 
-import re
+
 def register(request, year: int, month: int):
-    print(f'=============\n\naccessed register\n\n{request.user.username=} \n\n===============')
+    logger.info(f'User {request.user.username} accessed register')
 
     days = request.POST['days']
-    print(f'=============\n\n{days=}\n\n===============')
     insert_data =  {
         'year': year,
         'month': month,
         'days': days,
     }
-    if not ScheduleDB.objects.filter(
-        year=year,
-        month=month
-    ).exists():
-        ScheduleDB.objects.create(**insert_data)
-    else:
-        ScheduleDB.objects.filter(
+    
+    try:
+        if not ScheduleDB.objects.filter(
             year=year,
             month=month
-        ).update(**insert_data)
+        ).exists():
+            ScheduleDB.objects.create(**insert_data)
+        else:
+            ScheduleDB.objects.filter(
+                year=year,
+                month=month
+            ).update(**insert_data)
+    except Exception as e:
+        logger.exception(f'User {request.user.username} failed to register activity data: {insert_data}\n{e}')
 
+    logger.debug(f'User {request.user.username} registered activity data: {insert_data}')
     return HttpResponse('success')

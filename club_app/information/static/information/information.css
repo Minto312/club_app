@@ -5,3 +5,75 @@
     padding: 0;
     box-sizing: border-box;
 }
+#content{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    
+
+    & #form-wrap{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        & form{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            & .form-box{
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+
+                & label{
+                    font-size: 1.2em;
+                }
+                & #text-message{
+                    height: 150px;
+                }
+            }
+        }
+    }
+    & #message-wrap{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & .message-box{
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            
+            gap: 25px;
+
+            & .message{
+                padding: 25px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            
+                & .text-message{
+                    
+                }
+                
+                & .image-message{
+                
+                }
+                
+                & .file-message{
+                
+                }
+            }
+            
+        }
+    }
+}
+
+
+
