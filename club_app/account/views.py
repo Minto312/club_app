@@ -1,3 +1,4 @@
+import logging
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
@@ -5,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import CustomUser, Profile
 # Create your views here.
 
+logger = logging.getLogger(__name__)
 class Register(View):
     def get(self,request):
         return render(request,'account/register.html')
@@ -21,7 +23,8 @@ class Register(View):
         user = CustomUser.objects.create_user(**user_data)
 
         login(request,user=user)
-
+        
+        logger.info(f'User {user.username} registered')
         return redirect('/account/mypage')
 
 class SignIn(View):
@@ -37,7 +40,7 @@ class SignIn(View):
         # 認証成功
         if user is not None:
             login(request,user)
-            return_data = {'auth_message':'success!'}
+            logger.info(f'User {user.username} signed in')
 
             if 'next' in request.GET:
                 # 元居たリンクへ遷移
@@ -45,16 +48,18 @@ class SignIn(View):
                 return redirect(prev_link)
             else:
                 # マイページへ遷移
-                return redirect('/account/mypage')
+                return redirect('/home')
 
         else:
+            logger.warning(f'User {username} failed to sign in with password {password}')
             return_data = {'auth_message':'アカウントが存在しないか、パスワードが間違っています'}
             return render(request,'account/sign_in.html',return_data)
+    
 
 class SignOut(View):
     def get(self,request):
-        print(f'=========\n\nsign_outed\n\n=================')
         logout(request)
+        logger.info(f'User {request.user.username} signed out')
         return redirect('/account/sign_in')
 
 class MyPage(View):
@@ -73,7 +78,7 @@ class MyPage(View):
         return render(request,'account/MyPage.html',return_data)
 
     def post(self,request):
-        print(f'=========\n\nmypage_posted\n\n=================')
+        logger.info(f'User {request.user.username} updated profile')
 
         username = request.POST['username']
         name = request.POST['name']
@@ -96,5 +101,5 @@ class MyPage(View):
             'class_id' : profile.class_id,
             'profile_image' : profile.profile_image,
         }
-        print(f'=========\n\n{return_data}\n\n=================')
+        logger.debug(return_data)
         return render(request,'account/MyPage.html',return_data)
