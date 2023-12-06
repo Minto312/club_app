@@ -1,6 +1,10 @@
+import logging
+from venv import logger
 from django.shortcuts import render, redirect
 from django.views import View
 from .models import Message_table
+
+logger = logging.getLogger(__name__)
 
 import pytz
 jst = pytz.timezone('Asia/Tokyo')
@@ -8,6 +12,7 @@ jst = pytz.timezone('Asia/Tokyo')
 class Information(View):
 
     def get(self,request):
+        logger.info(f'User {request.user.username} accessed information')
         messages_id = Message_table.objects.order_by('send_date').reverse().values('message_id')
         message_context_list = []
         
@@ -29,8 +34,10 @@ class Information(View):
         return render(request,'information/information.html', context)
 
     def post(self,request):
+        logger.info(f'User {request.user.username} posted message')
         text_message = request.POST['text-message']
         image_message = request.FILES.get('image-message', None)
         file_message = request.FILES.get('file-message', None)
         Message_table.objects.create(text_message=text_message, image_message=image_message, file_message=file_message)
+        logger.debug(f'User {request.user.username} posted message {text_message} {image_message} {file_message}')
         return redirect('http://10.8.0.10:8000/information')
