@@ -66,6 +66,8 @@ services:
         source: /home/mel/var/log/
         target: /var/log/
 
+    restart: always
+
   db:
     container_name: mysql
     image: mysql:8.2.0
@@ -91,8 +93,7 @@ services:
         source: /home/mel/var/log/
         target: /var/log/
 
-    depends_on:
-      - nginx
+    restart: always
 
 volumes:
   socket:
