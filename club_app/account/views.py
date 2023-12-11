@@ -30,7 +30,7 @@ class Register(View):
 import os
 class SignIn(View):
     def get(self,request):
-        if not CustomUser.objects.all().exists():
+        if not CustomUser.objects.filter(is_superuser=True).exists():
             admin_password = os.environ.get('admin_password')
             CustomUser.objects.create_superuser('admin', admin_password)
         return render(request,'account/sign_in.html')
