@@ -28,10 +28,15 @@ services:
         source: db_socket
         target: /var/run/mysqld/
 
+      # - type: bind
+      #   source: /home/mel/var/log/
+      #   target: /var/log/
+
     environment:
       IS_PRODUCT: 'True'
       HOST: 'mel.f5.si'
       IS_DOCKER: 'True'
+      admin_password: 'adminpassword'
 
     restart: always
 
@@ -89,9 +94,6 @@ services:
         source: db_socket
         target: /var/run/mysqld/
 
-      # - type: bind
-      #   source: /home/mel/var/log/
-      #   target: /var/log/
 
     restart: always
 

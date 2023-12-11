@@ -27,8 +27,12 @@ class Register(View):
         logger.info(f'User {user.username} registered')
         return redirect('/account/mypage')
 
+import os
 class SignIn(View):
     def get(self,request):
+        if not CustomUser.objects.all().exists():
+            admin_password = os.environ.get('admin_password')
+            CustomUser.objects.create_superuser('admin', admin_password)
         return render(request,'account/sign_in.html')
 
     def post(self,request):
@@ -53,7 +57,8 @@ class SignIn(View):
         else:
             logger.warning(f'User {username} failed to sign in with password {password}')
             return_data = {'auth_message':'アカウントが存在しないか、パスワードが間違っています'}
-            return render(request,'account/sign_in.html',return_data)
+            return render(
+                request,'account/sign_in.html',return_data)
     
 
 class SignOut(View):
