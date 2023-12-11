@@ -19,6 +19,14 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": ('username','is_staff','is_superuser')
+            },
+        ),
+    )
 
     list_display = ('username','is_staff','is_superuser')
 
