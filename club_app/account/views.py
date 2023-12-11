@@ -52,7 +52,7 @@ class SignIn(View):
                 return redirect(prev_link)
             else:
                 # マイページへ遷移
-                return redirect('/home')
+                return redirect('home:home')
 
         else:
             logger.warning(f'User {username} failed to sign in with password {password}')
