@@ -1,8 +1,8 @@
 # club_app
 ゲスト用アカウント
-- 一般ユーザー（部員）--- username = guest-1  |  password = guest-1234
-- 教師用ユーザー ---------- username = guest-2  |  password = guest-1234
-- /adminへのアクセス用 -- username = guest-0  |  password = guest-1234
+- 一般ユーザー（部員）--- username = guest-1  |  password = gt-pass-1234
+- 教師用ユーザー ---------- username = guest-2  |  password = gt-pass-1234
+- /adminへのアクセス用 -- username = guest-0  |  password = gt-pass-1234
 
 ## 概要
 このリポジトリは、Djangoフレームワークを用いたウェブアプリケーションで、Dockerを使用して環境を構築しています。  
@@ -47,10 +47,11 @@
 各アプリケーションへのリンクがある
 
 ### information:
-お知らせ・配布物
+お知らせ・配布物 | information  
+テキストメッセージと画像、ファイルを追加・表示できる  
 
 ### score:
-点数の記録
+点数の記録をする機能
 
 
 ### これから実装したい機能
