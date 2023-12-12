@@ -17,7 +17,8 @@ COPY uwsgi.ini .
 # RUN bash /var/tmp/entrypoint.sh
 
 RUN mkdir /app/tmp/sockets/ -p && \
-    touch /app/tmp/sockets/app.sock
+    touch /app/tmp/sockets/app.sock && \
+    mkdir -p /var/www/log
 
 COPY . .
 
