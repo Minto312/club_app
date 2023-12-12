@@ -40,7 +40,7 @@ window.onload = () => {
     });
 
     $('#attend-code').on('click',() => {
-        const codeUrl = 'https://' + location.hostname + location.pathname + '/attend/True';
+        const codeUrl = 'https://' + location.hostname + location.pathname + 'attend/True';
         $('#code').qrcode(codeUrl);
         $('#code-container').show();
         $('#close').on('click',() => {

@@ -10,6 +10,8 @@ class AuthMiddleware(MiddlewareMixin):
             # '/var/www/mysql',
             # '/',
         ]
+        
         if request.path not in permit_urls and not request.user.is_authenticated:
-            return redirect('account:sign_in')
+            current_url = request.path
+            return redirect('/account/sign_in/?next=' + current_url)
         return response
