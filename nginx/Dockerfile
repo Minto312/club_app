@@ -7,6 +7,6 @@ COPY club-introduction /var/www/club-introduction
 # /var/www/etc
 COPY ssl /ssl
 
-# RUN mkdir -p /var/log/nginx
+RUN mkdir -p /var/www/log
 
 CMD ["nginx","-g","daemon off;","-c","nginx.conf"]
