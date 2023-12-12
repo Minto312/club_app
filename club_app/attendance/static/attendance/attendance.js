@@ -42,9 +42,9 @@ window.onload = () => {
     $('#attend-code').on('click',() => {
         const codeUrl = 'https://' + location.hostname + location.pathname + 'attend/True';
         $('#code').qrcode(codeUrl);
-        $('#code-container').show();
+        $('#code').show();
         $('#close').on('click',() => {
-            $('#code-container').hide();
+            $('#code').hide();
             $('#code').clear();
         })
     })
