@@ -97,6 +97,41 @@
     cursor: pointer;
 }
 
+#code-container{
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    & #code{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50vw;
+        height: 50vh;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+        border-radius: 12px;
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    & #close{
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 1px solid #000000;
+        font-size: 2em;
+        cursor: pointer;
+    }
+
+}
+
 
 /* activity */
 
