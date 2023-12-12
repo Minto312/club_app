@@ -98,12 +98,15 @@
 }
 
 #code-container{
-    position: fixed;
+    position: absolute;
     display: none;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    top: 5vh;
+    left: 5vw;
+    width: 90vw;
+    height: 90vh;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    background-color: #ffffff;
 
     & #code{
         position: absolute;
@@ -116,15 +119,11 @@
         border: 2px solid #000000;
         border-radius: 12px;
         padding: 2em;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
     }
     & #close{
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 6vh;
+        right: 6vw;
         border: 1px solid #000000;
         font-size: 2em;
         cursor: pointer;

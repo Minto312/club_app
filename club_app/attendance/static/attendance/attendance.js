@@ -45,6 +45,7 @@ window.onload = () => {
         $('#code-container').show();
         $('#close').on('click',() => {
             $('#code-container').hide();
+            $('#code').clear();
         })
     })
 };
