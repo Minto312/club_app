@@ -5,6 +5,20 @@
     padding: 0;
     box-sizing: border-box;
 }
+button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+}
+
+:root{
+    --header-height: 72px;
+    --hov-color: #ff5443;
+    --orenge: #fcbc80;
+    --beige: #fffaef;
+}
+
 body {
     height: 100vh;
     width: 100vw;
@@ -19,7 +33,7 @@ body {
     
         & a:hover,
           img:hover{
-            color: #ff5443;
+            color: var(--hov-color);
         }
     }
     & #content {
@@ -28,18 +42,6 @@ body {
     }
 }
 
-button{
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background: none;
-}
-
-:root{
-    --header-height: 72px;
-    --orenge: #fcbc80;
-    --beige: #fffaef;
-}
 
 #club_logo {
     position: absolute;
@@ -61,6 +63,13 @@ button{
         height: var(--header-height);
     }
 }
+@media screen and (max-width: 768px){
+    #club_logo{
+        display: none;
+    }
+}
+
+
 nav {   
     position: absolute;
     right: 25px;
@@ -82,7 +91,7 @@ nav {
         text-decoration: none;
     }
     & :hover {
-            color: #ff5443;
+            color: var(--hov-color);
     }
 }
 
@@ -132,14 +141,14 @@ nav {
         text-decoration: none;
     }
     & :hover{
-        color: #ff5443;
+        color: var(--hov-color);
     }
 }
 #tools{
     padding: 18px 25px;
     position: relative;
 
-    & p{
+    & button{
         font-family: 'Inter';
         font-size: 1.2em;
         font-weight: bold;
@@ -223,6 +232,6 @@ nav {
         text-decoration: none;
     }
     & :hover{
-        color: #ff5443;
+        color: var(--hov-color);
     }
 }
