@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/gh/osamutake/japanese-holidays-js@v1.0.10/lib/japanese-holidays.min.js"></script>
     {% load static%}
     <script src="{% static 'attendance/attendance.js' %}"></script>
+    <script src="{% static 'attendance/jquery.qrcode.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'attendance/attendance.css' %}">
 {% endblock %}
 
@@ -18,9 +19,13 @@
         <ul>
             <li><button type="button" id="absent-button">欠席します</button></li>
             {% if request.user.is_staff %}
+                <li><button id="attend-code">出席用コード</button></li>
                 <li><a href="activity">活動日の登録</a></li>
             {% endif %}
         </ul>
+    </div>
+    <div id="code">
+        <button id="close">X</button>
     </div>
     
     <div id="calender">

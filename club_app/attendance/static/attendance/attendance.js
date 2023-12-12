@@ -38,6 +38,16 @@ window.onload = () => {
             console.log(res);
         });
     });
+
+    $('#attend-code').on('click',() => {
+        const codeUrl = 'https://' + location.hostname + location.pathname + 'attend/True';
+        $('#code').qrcode(codeUrl);
+        $('#code').show();
+        $('#close').on('click',() => {
+            $('#code').hide();
+            $('#code').clear();
+        })
+    })
 };
 
 
