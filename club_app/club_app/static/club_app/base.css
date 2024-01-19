@@ -58,7 +58,7 @@ body {
     border-radius: 10px;
     background: #f2ebd1;
     
-    & img{
+    & video{
         width: auto;
         height: var(--header-height);
     }
