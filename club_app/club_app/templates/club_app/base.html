@@ -16,7 +16,10 @@
     <body>
         <header>
             <div id="club_logo">
-                    <video src="{% static 'club_app/logo_anime.mp4' %}" autoplay loop muted>
+                    <video autoplay loop muted>
+			    <source src="{% static 'club_app/logo_anime.mp4' %}" type="video/mp4" >
+			    <p>ロゴアニメーション</p>
+		    </video>
             </div>
             <nav>
                 <ul id="navigation_bar">
