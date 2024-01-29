@@ -45,7 +45,7 @@ services:
       - db
 
   nginx:
-    container_name: nginx
+    container_name: nginx_club
     build:
       context: ./nginx/
       dockerfile: ./Dockerfile

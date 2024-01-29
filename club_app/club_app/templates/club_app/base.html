@@ -17,7 +17,7 @@
         <header>
             <div id="club_logo">
                 <a href="{% url 'home:home' %}">
-                    <video src="{% static 'club_app/logo_anime.mp4' %}" alt="部活動ロゴ">
+                    <video src="{% static 'club_app/logo_anime.mp4' %}" autoplay loop muted>
                 </a>
             </div>
             <nav>
@@ -45,7 +45,11 @@
                     </ul>
                 </div>
                 <div id="user_icon" class="ready-hover accordion">
-                    <img src="/media/{{ request.user.profile.profile_image }}" alt="ユーザーアイコン">
+		    {% if request.user.profile.profile_image %}
+                        <img src="/media/{{ request.user.profile.profile_image }}" alt="ユーザーアイコン">
+		    {% else %}
+		    <img src="{% static 'club_app/default.png' %}" alt="ユーザーアイコン">
+		    {% endif %}
                     <ul id="user-menu">
                         <li>
                             <a href="{% url 'account:mypage' %}">マイページ</a>
