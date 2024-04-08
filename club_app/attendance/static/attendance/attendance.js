@@ -88,7 +88,7 @@ const render_calender = async () => {
         $(cell).removeClass('absent');
         $(cell).removeClass('activity');
     };
-
+    
     // 日付を書き込む
     for (let i=start_day_week; write_day <= last_date;i++){
         cell = DAY_CELLS.snapshotItem(i);
